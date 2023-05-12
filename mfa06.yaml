@@ -129,13 +129,13 @@ binary_sensor:
 
 light:
   - platform: binary
-    name: "Primary Switch"
+    name: "${primary_switch_name}"
     id: primary_switch
     output: primary_relay
 
 fan:
   - platform: binary
-    name: "Secondary Switch"
+    name: "${secondary_switch_name}"
     id: secondary_switch
     output: secondary_relay
 
