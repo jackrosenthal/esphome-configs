@@ -1,0 +1,2 @@
+<<: !include mfa06.yaml
+<<: !include factory.yaml

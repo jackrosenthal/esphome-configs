@@ -1,0 +1,149 @@
+substitutions:
+  name: mfa06
+  friendly_name: "Unprovisioned MFA06"
+  primary_switch_name: "${friendly_name} Light"
+  secondary_switch_name: "${friendly_name} Fan"
+  primary_switch_timeout: "1 min"
+  primary_switch_manual_off_timeout: "5s"
+  secondary_switch_timeout: "15 min"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/mfa06.yaml
+  import_full_config: false
+
+script:
+  - id: primary_switch_activate
+    mode: restart
+    then:
+      - light.turn_on: primary_switch
+      - delay: "${primary_switch_timeout}"
+      - light.turn_off: primary_switch
+  - id: primary_switch_manual_off
+    mode: restart
+    then:
+      - script.stop: primary_switch_activate
+      - light.turn_off: primary_switch
+      - delay: "${primary_switch_manual_off_timeout}"
+  - id: motion_detect
+    mode: restart
+    then:
+      - if:
+          condition:
+            script.is_running: secondary_switch_activate
+          then:
+            - script.execute: secondary_switch_activate
+      - script.wait: primary_switch_manual_off
+      - if:
+          condition:
+            binary_sensor.is_on: motion_sensor
+          then:
+            - script.execute: primary_switch_activate
+  - id: primary_switch_toggle
+    mode: restart
+    then:
+      - if:
+          condition:
+            light.is_on: primary_switch
+          then:
+            - script.execute: primary_switch_manual_off
+          else:
+            - script.execute: primary_switch_activate
+  - id: secondary_switch_activate
+    mode: restart
+    then:
+      - fan.turn_on: secondary_switch
+      - delay: "${primary_switch_timeout}"
+      - fan.turn_off: secondary_switch
+  - id: secondary_switch_manual_off
+    mode: restart
+    then:
+      - script.stop: secondary_switch_activate
+      - fan.turn_off: secondary_switch
+  - id: secondary_switch_toggle
+    mode: restart
+    then:
+      - if:
+          condition:
+            fan.is_on: secondary_switch
+          then:
+            - script.execute: secondary_switch_manual_off
+          else:
+            - script.execute: secondary_switch_activate
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 4
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: primary_button
+    on_press:
+      then:
+        - script.execute: primary_switch_toggle
+  - platform: gpio
+    pin:
+      number: 0
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: secondary_button
+    on_press:
+      then:
+        - script.execute: secondary_switch_toggle
+  - platform: gpio
+    pin:
+      number: 5
+      inverted: True
+    name: "Motion Sensor"
+    id: motion_sensor
+    device_class: motion
+    on_press:
+      then:
+        - script.execute: motion_detect
+  - platform: gpio
+    pin:
+      number: 14
+      inverted: True
+    name: "Light Sensor"
+    device_class: light
+
+light:
+  - platform: binary
+    name: "Primary Switch"
+    id: primary_switch
+    output: primary_relay
+
+fan:
+  - platform: binary
+    name: "Secondary Switch"
+    id: secondary_switch
+    output: secondary_relay
+
+output:
+  - platform: gpio
+    pin: 12
+    id: primary_relay
+  - platform: gpio
+    pin: 16
+    id: secondary_relay
+
+status_led:
+  pin:
+    number: 13
