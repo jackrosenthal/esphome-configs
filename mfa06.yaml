@@ -149,3 +149,4 @@ output:
 status_led:
   pin:
     number: 13
+    inverted: True
