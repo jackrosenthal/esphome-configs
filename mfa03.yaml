@@ -1,0 +1,67 @@
+substitutions:
+  name: mfa03
+  friendly_name: "Unprovisioned MFA03"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/mfa03.yaml
+  import_full_config: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 0
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: button0
+    on_press:
+      then:
+        - light.toggle: light0
+
+light:
+  - platform: binary
+    name: "${friendly_name} Light"
+    id: light0
+    output: relay0
+    on_turn_on:
+      then:
+        - output.turn_on: on_led
+    on_turn_off:
+      then:
+        - output.turn_off: on_led
+
+output:
+  - platform: gpio
+    pin: 12
+    id: relay0
+  - platform: gpio
+    pin:
+      number: 4
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: on_led
+
+status_led:
+  pin:
+    number: 13
+    inverted: True
