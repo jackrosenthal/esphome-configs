@@ -38,5 +38,5 @@ light:
     name: "${friendly_name} Dimmer"
     dimmer_datapoint: 2
     switch_datapoint: 1
-    min_value: 1
-    max_value: 1000
+    min_value: 0
+    max_value: 255
