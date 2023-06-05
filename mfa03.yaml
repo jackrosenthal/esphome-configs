@@ -35,6 +35,9 @@ binary_sensor:
     on_press:
       then:
         - light.toggle: light0
+        - output.turn_on: vibrator0
+        - delay: 150ms
+        - output.turn_off: vibrator0
 
 light:
   - platform: binary
@@ -60,8 +63,9 @@ output:
         pullup: True
       inverted: True
     id: on_led
+  - platform: gpio
+    pin: 14
+    id: vibrator0
 
 status_led:
-  pin:
-    number: 13
-    inverted: True
+  pin: 13

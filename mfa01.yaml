@@ -1,0 +1,5 @@
+substitutions:
+  name: mfa01
+  friendly_name: "Unprovisioned MFA01"
+
+<<: !include mfa03.yaml
