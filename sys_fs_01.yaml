@@ -12,6 +12,7 @@ esphome:
   on_boot:
     priority: 800
     then:
+      - fan.turn_on: fan0
       - fan.turn_off: fan0
 
 esp8266:
