@@ -12,6 +12,7 @@ esphome:
   on_boot:
     priority: 800
     then:
+      - delay: 1s
       - fan.turn_on: fan0
       - fan.turn_off: fan0
 
