@@ -1,0 +1,39 @@
+substitutions:
+  name: sys-fs-01
+  friendly_name: "Unprovisioned SYS-FS-01"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+  # Disable serial port (conflict with Tuya MCU).
+  baud_rate: 0
+
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/sys_fs_01.yaml
+  import_full_config: false
+
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 9600
+
+tuya: {}
+
+fan:
+  - platform: "tuya"
+    name: "${friendly_name} Fan"
+    switch_datapoint: 1
+    speed_datapoint: 3
