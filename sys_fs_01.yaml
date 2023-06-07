@@ -32,8 +32,16 @@ uart:
 
 tuya: {}
 
+# Tuya:
+#   Datapoint 1: switch (value: OFF)
+#   Datapoint 3: enum (value: 0)
+#   Datapoint 6: enum (value: 0)
+#   Datapoint 7: int value (value: 0)
+#   Product: '{"p":"rviyyhbek17aamye","v":"1.0.0","m":0}'
+
 fan:
   - platform: "tuya"
     name: "${friendly_name} Fan"
     switch_datapoint: 1
     speed_datapoint: 3
+    speed_count: 4
