@@ -9,6 +9,32 @@ esphome:
   project:
     name: "jrosenth.${name}"
     version: "1.0.0"
+  on_loop:
+    then:
+      lambda: !lambda |-
+        float brightness;
+
+        id(dimmer).current_values_as_brightness(&brightness);
+
+        if (brightness >= 0.999)
+          id(led5).turn_on();
+        else
+          id(led5).turn_off();
+
+        if (brightness >= 0.75)
+          id(led4).turn_on();
+        else
+          id(led4).turn_off();
+
+        if (brightness >= 0.5)
+          id(led3).turn_on();
+        else
+          id(led3).turn_off();
+
+        if (brightness >= 0.25)
+          id(led2).turn_on();
+        else
+          id(led2).turn_off();
 
 libretiny:
   board: generic-bk7231n-qfn32-tuya
@@ -97,44 +123,6 @@ output:
   - platform: gpio
     pin: P26
     id: led5
-
-number:
-  - platform: template
-    min_value: 0
-    max_value: 100
-    step: 0.1
-    id: dimmer_brightness
-    set_action: []
-    lambda: !lambda |-
-      float brightness;
-      id(dimmer).current_values_as_brightness(&brightness);
-      return brightness * 100;
-    update_interval: 50ms
-    on_value_range:
-      - above: 25
-        then:
-          output.turn_on: led2
-      - below: 25
-        then:
-          output.turn_off: led2
-      - above: 50
-        then:
-          output.turn_on: led3
-      - below: 50
-        then:
-          output.turn_off: led3
-      - above: 75
-        then:
-          output.turn_on: led4
-      - below: 75
-        then:
-          output.turn_off: led4
-      - above: 99.9
-        then:
-          output.turn_on: led5
-      - below: 99.9
-        then:
-          output.turn_off: led5
 
 light:
   - platform: monochromatic
