@@ -1,0 +1,150 @@
+substitutions:
+  name: ks-d01w
+  friendly_name: "Unprovisioned KS-D01W"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+libretiny:
+  board: generic-bk7231n-qfn32-tuya
+  framework:
+    version: dev
+
+logger: {}
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/ks_d01w.yaml
+  import_full_config: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: P9
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: main_button
+    on_press:
+      then:
+        - light.toggle: dimmer
+  - platform: gpio
+    pin:
+      number: P20
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: brightness_down_button
+    on_press:
+      then:
+        - if:
+            condition:
+              light.is_on: dimmer
+            then:
+              - light.dim_relative:
+                  id: dimmer
+                  relative_brightness: -5%
+            else:
+              - light.turn_on:
+                  id: dimmer
+                  brightness: 1%
+  - platform: gpio
+    pin:
+      number: P22
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: brightness_up_button
+    on_press:
+      then:
+        - if:
+            condition:
+              light.is_on: dimmer
+            then:
+              - light.dim_relative:
+                  id: dimmer
+                  relative_brightness: +5%
+            else:
+              - light.turn_on:
+                  id: dimmer
+                  brightness: 100%
+
+output:
+  - platform: ledc
+    pin: P8
+    id: pwm_output
+  - platform: gpio
+    pin: P14
+    id: led1
+  - platform: gpio
+    pin: P16
+    id: led2
+  - platform: gpio
+    pin: P7
+    id: led3
+  - platform: gpio
+    pin: P6
+    id: led4
+  - platform: gpio
+    pin: P26
+    id: led5
+
+number:
+  - platform: template
+    min_value: 0
+    max_value: 100
+    step: 0.1
+    id: dimmer_brightness
+    set_action: []
+    lambda: !lambda |-
+      float brightness;
+      id(dimmer).current_values_as_brightness(&brightness);
+      return brightness * 100;
+    update_interval: 50ms
+    on_value_range:
+      - above: 25
+        then:
+          output.turn_on: led2
+      - below: 25
+        then:
+          output.turn_off: led2
+      - above: 50
+        then:
+          output.turn_on: led3
+      - below: 50
+        then:
+          output.turn_off: led3
+      - above: 75
+        then:
+          output.turn_on: led4
+      - below: 75
+        then:
+          output.turn_off: led4
+      - above: 99.9
+        then:
+          output.turn_on: led5
+      - below: 99.9
+        then:
+          output.turn_off: led5
+
+light:
+  - platform: monochromatic
+    output: pwm_output
+    name: "${friendly_name} Light"
+    id: dimmer
+    on_turn_on:
+      - output.turn_on: led1
+    on_turn_off:
+      - output.turn_off: led1
+
+status_led:
+  pin: P17
