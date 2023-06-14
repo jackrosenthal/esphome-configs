@@ -8,7 +8,7 @@ esphome:
   name_add_mac_suffix: true
   project:
     name: "jrosenth.${name}"
-    version: "1.0.0"
+    version: "1.0.1"
 
 esp8266:
   board: esp01_1m
@@ -36,7 +36,7 @@ binary_sensor:
       then:
         - light.toggle: light0
         - output.turn_on: vibrator0
-        - delay: 150ms
+        - delay: 50ms
         - output.turn_off: vibrator0
 
 light:
@@ -68,4 +68,6 @@ output:
     id: vibrator0
 
 status_led:
-  pin: 13
+  pin:
+    number: 13
+    inverted: True
