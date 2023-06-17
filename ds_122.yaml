@@ -1,0 +1,64 @@
+substitutions:
+  name: ds-122
+  friendly_name: "Unprovisioned DS-122"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+libretiny:
+  board: wb3s
+  framework:
+    version: dev
+
+logger: {}
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/ds_122.yaml
+  import_full_config: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: P10
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: button
+    on_press:
+      then:
+        - light.toggle: light0
+
+output:
+  - platform: gpio
+    pin:
+      number: P26
+      inverted: True
+    id: blue_led
+  - platform: gpio
+    pin: P6
+    id: relay
+
+light:
+  - platform: binary
+    output: relay
+    id: light0
+    name: "${friendly_name} Light"
+    on_turn_on:
+      then:
+        - output.turn_on: blue_led
+    on_turn_off:
+      then:
+        - output.turn_off: blue_led
+
+status_led:
+  pin:
+    number: P1
+    inverted: True
