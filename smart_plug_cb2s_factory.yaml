@@ -1,0 +1,2 @@
+<<: !include smart_plug_cb2s.yaml
+<<: !include factory.yaml

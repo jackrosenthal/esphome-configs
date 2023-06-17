@@ -1,0 +1,54 @@
+substitutions:
+  name: smart-plug-cb2s
+  friendly_name: "Unprovisioned Smart Plug"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+libretiny:
+  board: generic-bk7231n-qfn32-tuya
+  framework:
+    version: dev
+
+logger: {}
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/smart_plug_cb2s.yaml
+  import_full_config: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: P8
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: button
+    on_press:
+      then:
+        - switch.toggle: relay
+
+output:
+  - platform: gpio
+    pin: P7
+    id: led
+
+switch:
+  - platform: gpio
+    pin: P24
+    id: relay
+    name: "Smart Plug"
+    on_turn_on:
+      then:
+        - output.turn_on: led
+    on_turn_off:
+      then:
+        - output.turn_off: led
