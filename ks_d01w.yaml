@@ -108,6 +108,7 @@ output:
   - platform: ledc
     pin: P8
     id: pwm_output
+    max_power: 0.999
   - platform: gpio
     pin: P14
     id: led1
