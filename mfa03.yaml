@@ -23,6 +23,11 @@ dashboard_import:
   package_import_url: github://jackrosenthal/esphome-configs/mfa03.yaml
   import_full_config: false
 
+# P13L, P4L: Blue
+# P13L, P4H: Green
+# P13H, P4L: Off
+# P13H, P4H: Green
+
 binary_sensor:
   - platform: gpio
     pin:
@@ -57,7 +62,7 @@ output:
     id: relay0
   - platform: gpio
     pin:
-      number: 4
+      number: 13
       mode:
         input: True
         pullup: True
@@ -68,6 +73,4 @@ output:
     id: vibrator0
 
 status_led:
-  pin:
-    number: 13
-    inverted: True
+  pin: 4
