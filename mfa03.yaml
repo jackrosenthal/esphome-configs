@@ -63,9 +63,6 @@ output:
   - platform: gpio
     pin:
       number: 13
-      mode:
-        input: True
-        pullup: True
       inverted: True
     id: on_led
   - platform: gpio
