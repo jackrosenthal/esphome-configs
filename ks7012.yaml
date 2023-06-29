@@ -1,0 +1,44 @@
+substitutions:
+  name: ks7012
+  friendly_name: "Unprovisioned KS-7012"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+libretiny:
+  board: generic-bk7231n-qfn32-tuya
+  framework:
+    version: dev
+
+# Enable logging
+logger:
+  # Disable serial port (conflict with Tuya MCU).
+  baud_rate: 0
+
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/ks7012.yaml
+  import_full_config: false
+
+uart:
+  rx_pin: P10
+  tx_pin: P11
+  baud_rate: 115200
+
+tuya: {}
+
+light:
+  - platform: "tuya"
+    id: "dimmer"
+    name: "${friendly_name} Dimmer"
+    dimmer_datapoint: 2
+    switch_datapoint: 1
+    min_value: 0
+    max_value: 1000
