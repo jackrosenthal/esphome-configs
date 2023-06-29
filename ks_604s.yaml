@@ -1,0 +1,72 @@
+# Hidintech KS-604S Smart Outlet with USB
+#
+# .---------.
+# |  |   |  |    Relay: P26
+# |    o    |
+# | B  L  U |    Button: P11, Red LED: Hard-wire to relay high
+# |    L  S |    Green LED: P10 Active Low, USB port: P6
+# | B  L  B |    Button: P26, Red LED: Hard-wire to relay high
+# |  |   |  |
+# |    o    |    Relay: P8
+# `---------'
+
+substitutions:
+  name: ks-604s
+  friendly_name: "Unprovisioned KS-604S"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+libretiny:
+  board: generic-bk7231n-qfn32-tuya
+  framework:
+    version: dev
+
+logger: {}
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/ks_604s.yaml
+  import_full_config: false
+
+binary_sensor:
+  - platform: gpio
+    pin: P11
+    id: upper_button
+    on_press:
+      then:
+        - switch.toggle: upper_outlet
+  - platform: gpio
+    pin: P24
+    id: lower_button
+    on_press:
+      then:
+        - switch.toggle: lower_outlet
+
+switch:
+  - platform: gpio
+    pin: P26
+    name: "Upper Outlet"
+    id: upper_outlet
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    pin: P8
+    name: "Lower Outlet"
+    id: lower_outlet
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    pin: P6
+    id: usb
+    name: "USB Port"
+    restore_mode: RESTORE_DEFAULT_ON
+
+status_led:
+  pin:
+    number: P10
+    inverted: True
