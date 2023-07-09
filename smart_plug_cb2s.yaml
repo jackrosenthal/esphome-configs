@@ -1,3 +1,11 @@
+# Chengdu Xugang XGWiFi-01 Smart Plug
+# https://www.aliexpress.us/item/3256805074476065.html
+# Cloudcutter profile: qncx-16a-smart-plug
+# Pins:
+#   P7: !LED
+#   P8: Button (active low)
+#   P24: Relay (active high)
+
 substitutions:
   name: smart-plug-cb2s
   friendly_name: "Unprovisioned Smart Plug"
@@ -38,7 +46,9 @@ binary_sensor:
 
 output:
   - platform: gpio
-    pin: P7
+    pin:
+      number: P7
+      inverted: True
     id: led
 
 switch:
