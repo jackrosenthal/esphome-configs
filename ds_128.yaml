@@ -1,0 +1,74 @@
+# ATARM LS01 / DS-128 Light Switch
+# https://www.atarm.com/product-page/ls01
+# https://www.aliexpress.us/item/3256805457749476.html
+# Cloudcutter profile: oem-bk7231s-rnd-switch-1.0.7-sdk-2.0.0-30.06
+# LED:
+#   White: P6, Active Low
+#   Green: P10, Active Low
+# Button: P7, Active Low
+# Relay: P26, Active High
+
+substitutions:
+  name: ds-128
+  friendly_name: "Unprovisioned DS-128"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+libretiny:
+  board: wb2s
+  framework:
+    version: dev
+
+logger: {}
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/ds_128.yaml
+  import_full_config: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: P7
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: button
+    on_press:
+      then:
+        - light.toggle: light0
+
+output:
+  - platform: gpio
+    pin:
+      number: P10
+      inverted: True
+    id: green_led
+  - platform: gpio
+    pin: P26
+    id: relay
+
+light:
+  - platform: binary
+    output: relay
+    id: light0
+    name: "${friendly_name} Light"
+    on_turn_on:
+      then:
+        - output.turn_on: green_led
+    on_turn_off:
+      then:
+        - output.turn_off: green_led
+
+status_led:
+  pin:
+    number: P6
+    inverted: True
