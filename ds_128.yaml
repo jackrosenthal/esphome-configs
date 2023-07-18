@@ -20,7 +20,7 @@ esphome:
     name: "jrosenth.${name}"
     version: "1.0.0"
 
-libretiny:
+bk72xx:
   board: wb2s
   framework:
     version: dev

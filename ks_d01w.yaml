@@ -37,7 +37,7 @@ esphome:
         else
           id(led2).turn_off();
 
-libretiny:
+bk72xx:
   board: generic-bk7231n-qfn32-tuya
   framework:
     version: dev

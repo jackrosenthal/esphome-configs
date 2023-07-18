@@ -18,7 +18,7 @@ esphome:
     name: "jrosenth.${name}"
     version: "1.0.0"
 
-libretiny:
+bk72xx:
   board: generic-bk7231n-qfn32-tuya
   framework:
     version: dev
