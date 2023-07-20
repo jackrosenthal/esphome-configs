@@ -1,0 +1,93 @@
+substitutions:
+  name: fl-s122b
+  friendly_name: "Unprovisioned FL-S122B"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+bk72xx:
+  board: generic-bk7231n-qfn32-tuya
+  framework:
+    version: dev
+
+logger: {}
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/fl_s122b.yaml
+  import_full_config: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: P14
+      mode: INPUT_PULLUP
+      inverted: True
+    id: btn1
+    name: "${friendly_name} Button 1"
+    on_press:
+      then:
+        - switch.toggle: sw1
+  - platform: gpio
+    pin:
+      number: P16
+      mode: INPUT_PULLUP
+      inverted: True
+    id: btn2
+    name: "${friendly_name} Button 2"
+    on_press:
+      then:
+        - switch.toggle: sw2
+  - platform: gpio
+    pin:
+      number: P9
+      mode: INPUT_PULLUP
+      inverted: True
+    id: btn3
+    name: "${friendly_name} Button 3"
+    on_press:
+      then:
+        - switch.toggle: sw3
+
+output:
+  - platform: gpio
+    pin: P20
+    id: led1
+  - platform: gpio
+    pin: P8
+    id: led2
+  - platform: gpio
+    pin: P28
+    id: led3
+
+switch:
+  - platform: gpio
+    id: sw1
+    pin: P6
+    name: "${friendly_name} Switch 1"
+    on_turn_on:
+      - output.turn_on: led1
+    on_turn_off:
+      - output.turn_off: led1
+  - platform: gpio
+    id: sw2
+    pin: P26
+    name: "${friendly_name} Switch 2"
+    on_turn_on:
+      - output.turn_on: led2
+    on_turn_off:
+      - output.turn_off: led2
+  - platform: gpio
+    id: sw3
+    pin: P24
+    name: "${friendly_name} Switch 3"
+    on_turn_on:
+      - output.turn_on: led3
+    on_turn_off:
+      - output.turn_off: led3
