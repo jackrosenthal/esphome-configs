@@ -1,0 +1,83 @@
+# Hidintech KS-602F - BK7231N variant
+
+substitutions:
+  name: ks-602f
+  friendly_name: "Unprovisioned KS-602F"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+bk72xx:
+  board: generic-bk7231n-qfn32-tuya
+  framework:
+    version: dev
+
+logger: {}
+api: {}
+ota: {}
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/ks_602f.yaml
+  import_full_config: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: P24
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: main_button
+    on_press:
+      - light.toggle: light0
+  - platform: gpio
+    pin: P17
+    id: is_on
+    on_press:
+      - light.turn_on: light0
+    on_release:
+      - light.turn_off: light0
+
+switch:
+  - platform: gpio
+    pin: P26
+    id: relay
+
+output:
+  - platform: template
+    type: binary
+    id: virtual_output
+    write_action:
+      - lambda: 'ESP_LOGI("main", "virtual: state=%d", state);'
+      - if:
+          condition:
+            - lambda: "return state;"
+            - binary_sensor.is_off: is_on
+          then:
+            - lambda: 'ESP_LOGI("main", "virtual: toggle to turn on");'
+            - switch.toggle: relay
+      - if:
+          condition:
+            - lambda: "return !state;"
+            - binary_sensor.is_on: is_on
+          then:
+            - lambda: 'ESP_LOGI("main", "virtual: toggle to turn off");'
+            - switch.toggle: relay
+      - lambda: 'ESP_LOGI("main", "virtual: done!");'
+
+light:
+  - platform: binary
+    output: virtual_output
+    name: "${friendly_name} Light"
+    id: light0
+
+status_led:
+  pin:
+    number: P22
+    inverted: True
