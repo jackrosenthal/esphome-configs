@@ -1,8 +1,19 @@
-# Chengdu Xugang XGWiFi-01 Smart Plug
-# https://www.aliexpress.us/item/3256805074476065.html
+# This is firmware for a number of Tuya Smart Plugs with CB2S module.
 # Cloudcutter profile: qncx-16a-smart-plug
+#
+# Chengdu Xugang XGWiFi-01 Smart Plug
+# "QNCX" brand on AliExpress
+# https://www.aliexpress.us/item/3256805074476065.html
+#
+# Jiangsu Barep BSC-004
+# https://www.alibaba.com/product-detail/Smart-Plug-2022-Hot-Sale-Wifi_1600447954354.html
+#
+# ZN35780201
+# https://www.aliexpress.us/item/3256805078682340.html
+#
 # Pins:
-#   P7: !LED
+#   P6: !Red LED (not present on some plugs?)
+#   P7: !Blue LED
 #   P8: Button (active low)
 #   P24: Relay (active high)
 
@@ -62,3 +73,8 @@ switch:
     on_turn_off:
       then:
         - output.turn_off: led
+
+status_led:
+  pin:
+    number: P6
+    inverted: True
