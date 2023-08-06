@@ -1,0 +1,24 @@
+substitutions:
+  switch_id: sw0
+  restart_id: restart_btn
+  safe_mode_id: safe_mode_btn
+  factory_reset_id: factory_reset_btn
+
+network: {}
+logger: {}
+api: {}
+ota: {}
+
+button:
+  - platform: restart
+    name: "${friendly_name} Restart"
+    id: "${restart_id}"
+    disabled_by_default: True
+  - platform: safe_mode
+    name: "${friendly_name} Safe Mode"
+    id: "${safe_mode_id}"
+    disabled_by_default: True
+  - platform: factory_reset
+    name: "${friendly_name} Factory Reset"
+    id: "${factory_reset_id}"
+    disabled_by_default: True
