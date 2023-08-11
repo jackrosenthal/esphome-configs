@@ -8,8 +8,12 @@ network: {}
 logger: {}
 api: {}
 ota: {}
+captive_portal: {}
 wifi:
   power_save_mode: NONE
+  ap: {}
+web_server:
+  port: 80
 
 button:
   - platform: restart
