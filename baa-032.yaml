@@ -1,0 +1,55 @@
+# Jiangsu Barep BAA-032
+# https://www.alibaba.com/product-detail/US-Wall-mounted-smart-power-socket_1600732086091.html
+
+substitutions:
+  name: baa-032
+  friendly_name: "Unprovisioned BAA-032"
+
+packages:
+  default: !include "common/default.yaml"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+
+bk72xx:
+  board: cb2s
+  framework:
+    version: dev
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/baa-032.yaml
+  import_full_config: false
+
+binary_sensor:
+  - <<: !include "common/main_button.yaml"
+    platform: gpio
+    pin:
+      number: P24
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+
+switch:
+  - platform: gpio
+    pin: P26
+    name: "${friendly_name} AC Outlets"
+    id: sw0
+    icon: mdi:power-socket-us
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    pin: P8
+    name: "${friendly_name} USB Ports"
+    id: sw1
+    icon: mdi:usb
+    restore_mode: RESTORE_DEFAULT_ON
+
+status_led:
+  pin:
+    number: P6
+    inverted: True
