@@ -8,6 +8,8 @@ network: {}
 logger: {}
 api: {}
 ota: {}
+wifi:
+  power_save_mode: NONE
 
 button:
   - platform: restart
