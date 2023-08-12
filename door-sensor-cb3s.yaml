@@ -1,0 +1,128 @@
+# CB3S Door Sensor
+# https://www.aliexpress.us/item/3256804834690675.html
+
+substitutions:
+  name: door-sensor-cb3s
+  friendly_name: "Unprovisioned Door Sensor"
+  device_class: door
+
+packages:
+  default: !include "common/default.yaml"
+
+external_components:
+  - source: github://Xmister/libretuya-esphome@deep-sleep
+    components: [ deep_sleep ]
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+  project:
+    name: "jrosenth.${name}"
+    version: "1.0.0"
+  on_boot:
+    - delay: 5s
+    - script.execute: update_battery_adc
+    - script.execute: deep_sleep_entry
+
+bk72xx:
+  board: cb3s
+  framework:
+    source: https://github.com/kuba2k2/libretiny
+    version: 0.0.0
+
+dashboard_import:
+  package_import_url: github://jackrosenthal/esphome-configs/baa-032.yaml
+  import_full_config: false
+
+wifi:
+  power_save_mode: LIGHT
+
+deep_sleep:
+  id: deep_sleep_en
+  wakeup_pins:
+    - pin: P8
+      wakeup_pin_mode: INVERT_WAKEUP
+
+switch:
+  - platform: template
+    id: inhibit_deep_sleep
+    name: "${friendly_name} Inhibit Deep Sleep"
+    disabled_by_default: True
+    turn_off_action:
+      - script.execute: deep_sleep_entry
+
+output:
+  - platform: gpio
+    pin: P14
+    id: adc_vdiv
+
+script:
+  - id: update_battery_adc
+    mode: restart
+    then:
+      - output.turn_on: adc_vdiv
+      - component.update: battery_adc
+      - output.turn_off: adc_vdiv
+  - id: deep_sleep_entry
+    mode: restart
+    then:
+      - delay: 30s
+      - if:
+          condition:
+            switch.is_off: inhibit_deep_sleep
+          then:
+            - deep_sleep.enter: deep_sleep_en
+
+sensor:
+  - platform: adc
+    pin: P23
+    id: battery_adc
+    name: "${friendly_name} Battery Voltage"
+    update_interval: never
+    filters:
+      - multiply: 4.58
+
+binary_sensor:
+  - platform: gpio
+    pin: P8
+    device_class: "${device_class}"
+    id: open_sensor
+    name: "${friendly_name} Open"
+    on_state:
+      - script.execute: deep_sleep_entry
+  - platform: gpio
+    pin:
+      number: P24
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    id: pinhole_btn
+    name: "${friendly_name} Pinhole Button"
+    disabled_by_default: True
+    on_multi_click:
+      - timing:
+          - ON for at least 0.1s
+          - OFF for at least 1s
+        then:
+          - button.press: "${restart_id}"
+      - timing:
+          - ON for at least 0.1s
+          - OFF for at most 1s
+          - ON for at least 0.1s
+          - OFF for at least 1s
+        then:
+          - button.press: "${safe_mode_id}"
+      - timing:
+          - ON for at least 0.1s
+          - OFF for at most 1s
+          - ON for at least 0.1s
+          - OFF for at most 1s
+          - ON for at least 0.1s
+          - OFF for at least 1s
+        then:
+          - button.press: "${factory_reset_id}"
+
+status_led:
+  pin: P26
