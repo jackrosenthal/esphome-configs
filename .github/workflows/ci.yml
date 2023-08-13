@@ -23,29 +23,6 @@
         }
       ]
     },
-    "model-bk7231n-ds-122": {
-      "runs-on": "ubuntu-22.04",
-      "steps": [
-        {
-          "uses": "actions/checkout@v3"
-        },
-        {
-          "uses": "actions/setup-python@v4",
-          "with": {
-            "python-version": "3.10"
-          }
-        },
-        {
-          "run": "touch site_config.yaml"
-        },
-        {
-          "run": "pip install -r requirements.txt"
-        },
-        {
-          "run": "esphome compile models/bk7231n/ds-122.yaml"
-        }
-      ]
-    },
     "model-bk7231n-fl-s122b": {
       "runs-on": "ubuntu-22.04",
       "steps": [
@@ -227,6 +204,29 @@
         },
         {
           "run": "esphome compile models/bk7231n/ks-d01w.yaml"
+        }
+      ]
+    },
+    "model-bk7231t-ds-122": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "touch site_config.yaml"
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231t/ds-122.yaml"
         }
       ]
     },
