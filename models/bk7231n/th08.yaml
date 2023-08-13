@@ -1,0 +1,26 @@
+# Zitech TH08 Wi-Fi Temperature & Humidity Sensor
+# https://expo.tuya.com/product/1077042
+# Product ID: xlk3mtpjo1zkmdvh
+
+substitutions:
+  model: th08
+
+packages:
+  default: !include "../../common/default.yaml"
+
+bk72xx:
+  # Module: CBU
+  board: generic-bk7231n-qfn32-tuya
+  framework:
+    version: dev
+
+logger:
+  # Disable serial logging (conflict with Tuya MCU).
+  baud_rate: 0
+
+uart:
+  rx_pin: D10
+  tx_pin: D11
+  baud_rate: 9600
+
+tuya: {}
