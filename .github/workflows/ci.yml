@@ -1,0 +1,330 @@
+{
+  "jobs": {
+    "model-bk7231n-baa-032": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/baa-032.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-ds-122": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/ds-122.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-fl-s122b": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/fl-s122b.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-generic-cb2s-smart-plug": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/generic-cb2s-smart-plug.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-generic-cb3s-door-sensor": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/generic-cb3s-door-sensor.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-ks-602f": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/ks-602f.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-ks-602s": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/ks-602s.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-ks-604s": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/ks-604s.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-ks-7012": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/ks-7012.yaml"
+        }
+      ]
+    },
+    "model-bk7231n-ks-d01w": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/ks-d01w.yaml"
+        }
+      ]
+    },
+    "model-bk7231t-ds-128": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231t/ds-128.yaml"
+        }
+      ]
+    },
+    "model-esp8266-ks-7011": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/esp8266/ks-7011.yaml"
+        }
+      ]
+    },
+    "model-esp8266-mfa-01": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/esp8266/mfa-01.yaml"
+        }
+      ]
+    },
+    "model-esp8266-mfa-03": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/esp8266/mfa-03.yaml"
+        }
+      ]
+    },
+    "model-esp8266-mfa-06": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/esp8266/mfa-06.yaml"
+        }
+      ]
+    },
+    "model-esp8266-sys-fs-01": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/esp8266/sys-fs-01.yaml"
+        }
+      ]
+    }
+  },
+  "name": "CI",
+  "on": [
+    "push",
+    "pull-request"
+  ],
+  "run-name": "Build all YAML files"
+}
