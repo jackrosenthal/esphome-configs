@@ -28,6 +28,7 @@ def gen_yaml_job(path):
                 "uses": "actions/setup-python@v4",
                 "with": {"python-version": "3.10"},
             },
+            _run(["touch", "site_config.yaml"]),
             _run(["pip", "install", "-r", "requirements.txt"]),
             _run(["esphome", "compile", path.relative_to(REPO)]),
         ],

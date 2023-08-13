@@ -13,6 +13,9 @@
           }
         },
         {
+          "run": "touch site_config.yaml"
+        },
+        {
           "run": "pip install -r requirements.txt"
         },
         {
@@ -31,6 +34,9 @@
           "with": {
             "python-version": "3.10"
           }
+        },
+        {
+          "run": "touch site_config.yaml"
         },
         {
           "run": "pip install -r requirements.txt"
@@ -53,6 +59,9 @@
           }
         },
         {
+          "run": "touch site_config.yaml"
+        },
+        {
           "run": "pip install -r requirements.txt"
         },
         {
@@ -71,6 +80,9 @@
           "with": {
             "python-version": "3.10"
           }
+        },
+        {
+          "run": "touch site_config.yaml"
         },
         {
           "run": "pip install -r requirements.txt"
@@ -93,6 +105,9 @@
           }
         },
         {
+          "run": "touch site_config.yaml"
+        },
+        {
           "run": "pip install -r requirements.txt"
         },
         {
@@ -111,6 +126,9 @@
           "with": {
             "python-version": "3.10"
           }
+        },
+        {
+          "run": "touch site_config.yaml"
         },
         {
           "run": "pip install -r requirements.txt"
@@ -133,6 +151,9 @@
           }
         },
         {
+          "run": "touch site_config.yaml"
+        },
+        {
           "run": "pip install -r requirements.txt"
         },
         {
@@ -151,6 +172,9 @@
           "with": {
             "python-version": "3.10"
           }
+        },
+        {
+          "run": "touch site_config.yaml"
         },
         {
           "run": "pip install -r requirements.txt"
@@ -173,6 +197,9 @@
           }
         },
         {
+          "run": "touch site_config.yaml"
+        },
+        {
           "run": "pip install -r requirements.txt"
         },
         {
@@ -191,6 +218,9 @@
           "with": {
             "python-version": "3.10"
           }
+        },
+        {
+          "run": "touch site_config.yaml"
         },
         {
           "run": "pip install -r requirements.txt"
@@ -213,6 +243,9 @@
           }
         },
         {
+          "run": "touch site_config.yaml"
+        },
+        {
           "run": "pip install -r requirements.txt"
         },
         {
@@ -231,6 +264,9 @@
           "with": {
             "python-version": "3.10"
           }
+        },
+        {
+          "run": "touch site_config.yaml"
         },
         {
           "run": "pip install -r requirements.txt"
@@ -253,6 +289,9 @@
           }
         },
         {
+          "run": "touch site_config.yaml"
+        },
+        {
           "run": "pip install -r requirements.txt"
         },
         {
@@ -271,6 +310,9 @@
           "with": {
             "python-version": "3.10"
           }
+        },
+        {
+          "run": "touch site_config.yaml"
         },
         {
           "run": "pip install -r requirements.txt"
@@ -293,6 +335,9 @@
           }
         },
         {
+          "run": "touch site_config.yaml"
+        },
+        {
           "run": "pip install -r requirements.txt"
         },
         {
@@ -311,6 +356,9 @@
           "with": {
             "python-version": "3.10"
           }
+        },
+        {
+          "run": "touch site_config.yaml"
         },
         {
           "run": "pip install -r requirements.txt"
