@@ -9,8 +9,7 @@ packages:
   default: !include "../../common/default.yaml"
 
 bk72xx:
-  # Module: CBU
-  board: generic-bk7231n-qfn32-tuya
+  board: cbu
   framework:
     version: dev
 

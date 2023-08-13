@@ -34,7 +34,7 @@ esphome:
           id(led2).turn_off();
 
 bk72xx:
-  board: generic-bk7231n-qfn32-tuya
+  board: cbu
   framework:
     version: dev
 
