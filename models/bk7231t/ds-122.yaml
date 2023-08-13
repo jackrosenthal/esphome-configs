@@ -10,17 +10,14 @@ bk72xx:
     version: dev
 
 binary_sensor:
-  - platform: gpio
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
     pin:
       number: P10
       mode:
         input: True
         pullup: True
       inverted: True
-    id: button
-    on_press:
-      then:
-        - light.toggle: light0
 
 output:
   - platform: gpio
@@ -28,15 +25,12 @@ output:
       number: P26
       inverted: True
     id: blue_led
+
+switch:
   - platform: gpio
     pin: P6
-    id: relay
-
-light:
-  - platform: binary
-    output: relay
-    id: light0
-    name: "${friendly_name} Light"
+    id: sw0
+    name: "${friendly_name} Switch"
     on_turn_on:
       then:
         - output.turn_on: blue_led
