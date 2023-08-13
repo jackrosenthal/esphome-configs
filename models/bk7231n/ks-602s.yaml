@@ -2,7 +2,7 @@ substitutions:
   model: ks-602s
 
 packages:
-  default: !include "common/default.yaml"
+  default: !include "../../common/default.yaml"
 
 bk72xx:
   board: generic-bk7231n-qfn32-tuya
@@ -10,7 +10,7 @@ bk72xx:
     version: dev
 
 binary_sensor:
-  - <<: !include "common/main_button.yaml"
+  - <<: !include "../../common/main_button.yaml"
     platform: gpio
     pin:
       number: P26
