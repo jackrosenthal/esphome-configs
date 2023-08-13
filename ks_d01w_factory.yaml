@@ -1,2 +1,0 @@
-<<: !include ks_d01w.yaml
-<<: !include factory.yaml

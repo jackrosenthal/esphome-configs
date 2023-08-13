@@ -1,26 +1,13 @@
 substitutions:
-  name: ks-602s
-  friendly_name: "Unprovisioned KS-602S"
+  model: ks-602s
 
 packages:
   default: !include "common/default.yaml"
-
-esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
-  name_add_mac_suffix: true
-  project:
-    name: "jrosenth.${name}"
-    version: "1.1.0"
 
 bk72xx:
   board: generic-bk7231n-qfn32-tuya
   framework:
     version: dev
-
-dashboard_import:
-  package_import_url: github://jackrosenthal/esphome-configs/ks_602s.yaml
-  import_full_config: false
 
 binary_sensor:
   - <<: !include "common/main_button.yaml"

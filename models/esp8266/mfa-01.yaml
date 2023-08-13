@@ -1,0 +1,5 @@
+substitutions:
+  model: mfa-01
+
+packages:
+  mfa-03: !include "mfa-03.yaml"

@@ -1,2 +1,0 @@
-<<: !include ks_604s.yaml
-<<: !include factory.yaml

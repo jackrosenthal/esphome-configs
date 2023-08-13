@@ -1,0 +1,25 @@
+substitutions:
+  model: ks-7011
+
+packages:
+  default: !include "../../common/default.yaml"
+
+logger:
+  # Disable serial port (conflict with Tuya MCU).
+  baud_rate: 0
+
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 9600
+
+tuya: {}
+
+light:
+  - platform: "tuya"
+    id: "dimmer"
+    name: "${friendly_name} Dimmer"
+    dimmer_datapoint: 2
+    switch_datapoint: 1
+    min_value: 0
+    max_value: 255

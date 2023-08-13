@@ -2,24 +2,17 @@
 # https://www.aliexpress.us/item/3256804834690675.html
 
 substitutions:
-  name: door-sensor-cb3s
-  friendly_name: "Unprovisioned Door Sensor"
+  model: generic-cb3s-door-sensor
   device_class: door
 
 packages:
-  default: !include "common/default.yaml"
+  default: !include "../../common/default.yaml"
 
 external_components:
   - source: github://Xmister/libretuya-esphome@deep-sleep
     components: [ deep_sleep ]
 
 esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
-  name_add_mac_suffix: true
-  project:
-    name: "jrosenth.${name}"
-    version: "1.0.0"
   on_boot:
     - delay: 5s
     - script.execute: update_battery_adc
@@ -30,10 +23,6 @@ bk72xx:
   framework:
     source: https://github.com/kuba2k2/libretiny
     version: 0.0.0
-
-dashboard_import:
-  package_import_url: github://jackrosenthal/esphome-configs/baa-032.yaml
-  import_full_config: false
 
 wifi:
   power_save_mode: LIGHT

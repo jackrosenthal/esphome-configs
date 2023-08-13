@@ -1,27 +1,13 @@
 substitutions:
-  name: ds-122
-  friendly_name: "Unprovisioned DS-122"
+  model: ds-122
 
-esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
-  name_add_mac_suffix: true
-  project:
-    name: "jrosenth.${name}"
-    version: "1.0.0"
+packages:
+  default: !include "../../common/default.yaml"
 
 bk72xx:
   board: wb3s
   framework:
     version: dev
-
-logger: {}
-api: {}
-ota: {}
-
-dashboard_import:
-  package_import_url: github://jackrosenthal/esphome-configs/ds_122.yaml
-  import_full_config: false
 
 binary_sensor:
   - platform: gpio

@@ -1,27 +1,11 @@
 substitutions:
-  name: mfa03
-  friendly_name: "Unprovisioned MFA03"
+  model: mfa03
 
-esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
-  name_add_mac_suffix: true
-  project:
-    name: "jrosenth.${name}"
-    version: "1.0.1"
+packages:
+  default: !include "../../common/default.yaml"
 
 esp8266:
   board: esp01_1m
-
-# Enable logging
-logger:
-
-api: {}
-ota: {}
-
-dashboard_import:
-  package_import_url: github://jackrosenthal/esphome-configs/mfa03.yaml
-  import_full_config: false
 
 # P13L, P4L: Blue
 # P13L, P4H: Green

@@ -1,9 +1,0 @@
-esphome:
-  name_add_mac_suffix: true
-api: {}
-ota: {}
-captive_portal: {}
-wifi:
-  ap: {}
-web_server:
-  port: 80

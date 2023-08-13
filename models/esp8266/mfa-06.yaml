@@ -1,32 +1,16 @@
 substitutions:
-  name: mfa06
-  friendly_name: "Unprovisioned MFA06"
+  model: mfa-06
   primary_switch_name: "${friendly_name} Light"
   secondary_switch_name: "${friendly_name} Fan"
   primary_switch_timeout: "1 min"
   primary_switch_manual_off_timeout: "5s"
   secondary_switch_timeout: "15 min"
 
-esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
-  name_add_mac_suffix: true
-  project:
-    name: "jrosenth.${name}"
-    version: "1.0.1"
+packages:
+  default: !include "../../common/default.yaml"
 
 esp8266:
   board: esp01_1m
-
-# Enable logging
-logger:
-
-api: {}
-ota: {}
-
-dashboard_import:
-  package_import_url: github://jackrosenthal/esphome-configs/mfa06.yaml
-  import_full_config: false
 
 script:
   - id: primary_switch_activate

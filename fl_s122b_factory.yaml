@@ -1,2 +1,0 @@
-<<: !include fl_s122b.yaml
-<<: !include factory.yaml

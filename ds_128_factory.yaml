@@ -1,2 +1,0 @@
-<<: !include ds_128.yaml
-<<: !include factory.yaml

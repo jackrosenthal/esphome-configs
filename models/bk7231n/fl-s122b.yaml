@@ -1,27 +1,13 @@
 substitutions:
-  name: fl-s122b
-  friendly_name: "Unprovisioned FL-S122B"
+  model: fl-s122b
 
-esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
-  name_add_mac_suffix: true
-  project:
-    name: "jrosenth.${name}"
-    version: "1.0.0"
+packages:
+  default: !include "../../common/default.yaml"
 
 bk72xx:
   board: generic-bk7231n-qfn32-tuya
   framework:
     version: dev
-
-logger: {}
-api: {}
-ota: {}
-
-dashboard_import:
-  package_import_url: github://jackrosenthal/esphome-configs/fl_s122b.yaml
-  import_full_config: false
 
 binary_sensor:
   - platform: gpio

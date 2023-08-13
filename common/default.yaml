@@ -3,10 +3,21 @@ substitutions:
   restart_id: restart_btn
   safe_mode_id: safe_mode_btn
   factory_reset_id: factory_reset_btn
+  name: "${model}"
+  friendly_name: "${model}"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: true
+
+packages:
+  site_config: !include "../site_config.yaml"
 
 network: {}
 logger: {}
 api: {}
+mdns: {}
 ota: {}
 captive_portal: {}
 wifi:

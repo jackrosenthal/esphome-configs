@@ -1,2 +1,0 @@
-<<: !include sys_fs_01.yaml
-<<: !include factory.yaml
