@@ -44,7 +44,7 @@ def gen_toplevel():
     return {
         "name": "CI",
         "run-name": "Build all YAML files",
-        "on": ["push", "pull-request"],
+        "on": ["push", "pull_request"],
         "jobs": {k: v for k, v in gen_jobs()},
     }
 

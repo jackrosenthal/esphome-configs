@@ -324,7 +324,7 @@
   "name": "CI",
   "on": [
     "push",
-    "pull-request"
+    "pull_request"
   ],
   "run-name": "Build all YAML files"
 }
