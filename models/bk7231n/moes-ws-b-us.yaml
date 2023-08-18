@@ -1,0 +1,118 @@
+substitutions:
+  model: moes-ws-b-us
+  switch_id: sw1
+
+packages:
+  default: !include "../../common/default.yaml"
+
+bk72xx:
+  board: cbu
+  framework:
+    version: dev
+
+output:
+- platform: gpio
+  id: led1
+  pin:
+    number: P14
+    inverted: true
+- platform: gpio
+  id: led2
+  pin:
+    number: P16
+    inverted: true
+- platform: gpio
+  id: led3
+  pin:
+    number: P20
+    inverted: true
+- platform: gpio
+  id: led4
+  pin:
+    number: P22
+    inverted: true
+- platform: template
+  id: status_output
+  type: binary
+  write_action:
+    - if:
+        condition:
+          lambda: return state > 0;
+        then:
+          - output.turn_on: led1
+        else:
+          - output.turn_off: led1
+
+light:
+  - platform: status_led
+    output: status_output
+    id: status_light
+
+binary_sensor:
+- <<: !include "../../common/main_button.yaml"
+  platform: gpio
+  pin:
+    number: P23
+    inverted: true
+    mode: INPUT_PULLUP
+- platform: gpio
+  id: btn2
+  pin:
+    number: P9
+    inverted: true
+    mode: INPUT_PULLUP
+  on_press:
+    then:
+    - switch.toggle: sw2
+- platform: gpio
+  id: btn3
+  pin:
+    number: P28
+    inverted: true
+    mode: INPUT_PULLUP
+  on_press:
+    then:
+    - switch.toggle: sw3
+- platform: gpio
+  id: btn4
+  pin:
+    number: P8
+    inverted: true
+    mode: INPUT_PULLUP
+  on_press:
+    then:
+    - switch.toggle: sw4
+
+switch:
+- platform: gpio
+  id: sw1
+  name: "${friendly_name} Switch 1"
+  pin: P24
+  on_turn_on:
+  - output.turn_on: led1
+  on_turn_off:
+  - output.turn_off: led1
+- platform: gpio
+  id: sw2
+  name: "${friendly_name} Switch 2"
+  pin: P26
+  on_turn_on:
+  - output.turn_on: led2
+  on_turn_off:
+  - output.turn_off: led2
+- platform: gpio
+  id: sw3
+  name: "${friendly_name} Switch 3"
+  pin: P6
+  on_turn_on:
+  - output.turn_on: led3
+  on_turn_off:
+  - output.turn_off: led3
+- platform: gpio
+  id: sw4
+  name: "${friendly_name} Switch 4"
+  pin: P7
+  on_turn_on:
+  - output.turn_on: led4
+  on_turn_off:
+  - output.turn_off: led4
