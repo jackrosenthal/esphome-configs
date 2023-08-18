@@ -1,0 +1,102 @@
+substitutions:
+  model: "bak-009s-esp-12f"
+
+packages:
+  default: !include "../../common/default.yaml"
+
+esp8266:
+  board: esp12e
+  framework:
+    version: recommended
+
+logger:
+  # Disable UART for Tuya MCU.
+  baud_rate: 0
+
+tuya: {}
+
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO1
+  baud_rate: 921600
+
+sn74hc595:
+  - id: hc595
+    data_pin: GPIO16
+    clock_pin: GPIO15
+    latch_pin: GPIO14
+    sr_count: 8
+
+switch:
+  - platform: gpio
+    name: "HC595 Pin #0"
+    pin:
+      sn74hc595: hc595
+      number: 0
+  - platform: gpio
+    name: "HC595 Pin #1"
+    pin:
+      sn74hc595: hc595
+      number: 1
+  - platform: gpio
+    name: "HC595 Pin #2"
+    pin:
+      sn74hc595: hc595
+      number: 2
+  - platform: gpio
+    name: "HC595 Pin #3"
+    pin:
+      sn74hc595: hc595
+      number: 3
+  - platform: gpio
+    name: "HC595 Pin #4"
+    pin:
+      sn74hc595: hc595
+      number: 4
+  - platform: gpio
+    name: "HC595 Pin #5"
+    pin:
+      sn74hc595: hc595
+      number: 5
+  - platform: gpio
+    name: "HC595 Pin #6"
+    pin:
+      sn74hc595: hc595
+      number: 6
+  - platform: gpio
+    name: "HC595 Pin #7"
+    pin:
+      sn74hc595: hc595
+      number: 7
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO4
+      mode: INPUT_PULLUP
+      inverted: True
+    id: increase_brightness_btn
+  - platform: gpio
+    pin:
+      number: GPIO2
+      mode: INPUT_PULLUP
+      inverted: True
+    id: decrease_brightness_btn
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    id: main_button
+
+light:
+  - platform: tuya
+    id: "dimmer"
+    name: "${friendly_name} Dimmer"
+    dimmer_datapoint: 2
+    switch_datapoint: 1
+    min_value: 255
+    max_value: 1000
+
+status_led:
+  pin: GPIO5
