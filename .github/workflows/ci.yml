@@ -207,6 +207,29 @@
         }
       ]
     },
+    "model-bk7231n-moes-ws-b-us": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "touch site_config.yaml"
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/moes-ws-b-us.yaml"
+        }
+      ]
+    },
     "model-bk7231n-th08": {
       "runs-on": "ubuntu-22.04",
       "steps": [
@@ -273,6 +296,29 @@
         },
         {
           "run": "esphome compile models/bk7231t/ds-128.yaml"
+        }
+      ]
+    },
+    "model-esp8266-bak-009s-esp-12f": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "touch site_config.yaml"
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/esp8266/bak-009s-esp-12f.yaml"
         }
       ]
     },
