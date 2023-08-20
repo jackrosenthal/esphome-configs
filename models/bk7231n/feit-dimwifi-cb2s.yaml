@@ -1,0 +1,30 @@
+substitutions:
+  model: feit-dimwifi-cb2s
+
+packages:
+  default: !include "../../common/default.yaml"
+
+bk72xx:
+  board: cb2s
+  framework:
+    version: dev
+
+logger:
+  # Disable serial port (conflict with Tuya MCU).
+  baud_rate: 0
+
+uart:
+  rx_pin: P10
+  tx_pin: P11
+  baud_rate: 9600
+
+tuya: {}
+
+light:
+  - platform: "tuya"
+    id: "dimmer"
+    name: "${friendly_name} Dimmer"
+    dimmer_datapoint: 2
+    switch_datapoint: 1
+    min_value: 10
+    max_value: 1000
