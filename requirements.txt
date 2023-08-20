@@ -6,7 +6,7 @@
 #
 aioesphomeapi==15.0.0
     # via esphome
-aiofiles==23.1.0
+aiofiles==23.2.1
     # via platformio
 ajsonrpc==1.2.0
     # via platformio
@@ -16,7 +16,9 @@ async-timeout==4.0.3
     # via
     #   aioesphomeapi
     #   zeroconf
-bitstring==4.0.2
+bitarray==2.8.0
+    # via bitstring
+bitstring==4.1.0
     # via esptool
 bottle==0.12.25
     # via platformio
@@ -26,7 +28,7 @@ cffi==1.15.1
     # via cryptography
 charset-normalizer==3.2.0
     # via requests
-click==8.1.6
+click==8.1.7
     # via
     #   esphome
     #   platformio
@@ -71,7 +73,7 @@ paho-mqtt==1.6.1
     # via esphome
 platformio==6.1.9
     # via esphome
-protobuf==4.24.0
+protobuf==4.24.1
     # via aioesphomeapi
 pycparser==2.21
     # via cffi
@@ -108,7 +110,7 @@ tzdata==2023.3
     # via esphome
 tzlocal==5.0.1
     # via esphome
-urllib3==1.26.16
+urllib3==2.0.4
     # via requests
 uvicorn==0.22.0
     # via platformio
