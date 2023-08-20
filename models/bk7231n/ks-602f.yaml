@@ -12,56 +12,48 @@ bk72xx:
     version: dev
 
 binary_sensor:
-  - platform: gpio
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
     pin:
       number: P24
       mode:
         input: True
         pullup: True
       inverted: True
-    id: main_button
-    on_press:
-      - light.toggle: light0
   - platform: gpio
     pin: P17
     id: is_on
     on_press:
-      - light.turn_on: light0
+      - switch.turn_on: sw0
     on_release:
-      - light.turn_off: light0
+      - switch.turn_off: sw0
 
 switch:
   - platform: gpio
     pin: P26
     id: relay
+  - platform: output
+    output: virtual_output
+    name: "${friendly_name} Switch"
+    id: sw0
 
 output:
   - platform: template
     type: binary
     id: virtual_output
     write_action:
-      - lambda: 'ESP_LOGI("main", "virtual: state=%d", state);'
       - if:
           condition:
             - lambda: "return state;"
             - binary_sensor.is_off: is_on
           then:
-            - lambda: 'ESP_LOGI("main", "virtual: toggle to turn on");'
             - switch.toggle: relay
       - if:
           condition:
             - lambda: "return !state;"
             - binary_sensor.is_on: is_on
           then:
-            - lambda: 'ESP_LOGI("main", "virtual: toggle to turn off");'
             - switch.toggle: relay
-      - lambda: 'ESP_LOGI("main", "virtual: done!");'
-
-light:
-  - platform: binary
-    output: virtual_output
-    name: "${friendly_name} Light"
-    id: light0
 
 status_led:
   pin:
