@@ -1,0 +1,9 @@
+substitutions:
+  name: grill-light
+  friendly_name: "Grill Light"
+  ip_address: 10.10.10.23
+
+packages:
+  mfa-03: !include "../../models/esp8266/mfa-03.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"

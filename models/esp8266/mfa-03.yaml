@@ -1,5 +1,5 @@
 substitutions:
-  model: mfa03
+  model: mfa-03
 
 packages:
   default: !include "../../common/default.yaml"
@@ -13,26 +13,18 @@ esp8266:
 # P13H, P4H: Green
 
 binary_sensor:
-  - platform: gpio
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
     pin:
       number: 0
-      mode:
-        input: True
-        pullup: True
+      mode: INPUT_PULLUP
       inverted: True
-    id: button0
-    on_press:
-      then:
-        - light.toggle: light0
-        - output.turn_on: vibrator0
-        - delay: 50ms
-        - output.turn_off: vibrator0
 
-light:
-  - platform: binary
-    name: "Light"
-    id: light0
-    output: relay0
+switch:
+  - platform: gpio
+    name: "Switch"
+    id: sw0
+    pin: 12
     on_turn_on:
       then:
         - output.turn_on: on_led
@@ -42,16 +34,10 @@ light:
 
 output:
   - platform: gpio
-    pin: 12
-    id: relay0
-  - platform: gpio
     pin:
       number: 13
       inverted: True
     id: on_led
-  - platform: gpio
-    pin: 14
-    id: vibrator0
 
 status_led:
   pin: 4

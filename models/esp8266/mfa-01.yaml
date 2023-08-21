@@ -3,3 +3,17 @@ substitutions:
 
 packages:
   mfa-03: !include "mfa-03.yaml"
+
+binary_sensor:
+  - id: !extend main_button
+    on_press:
+      then:
+        - output.turn_on: vibrator
+    on_release:
+      then:
+        - output.turn_off: vibrator
+
+output:
+  - platform: gpio
+    pin: 14
+    id: vibrator
