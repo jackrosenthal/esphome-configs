@@ -36,7 +36,7 @@ deep_sleep:
 switch:
   - platform: template
     id: inhibit_deep_sleep
-    name: "${friendly_name} Inhibit Deep Sleep"
+    name: "Inhibit Deep Sleep"
     disabled_by_default: True
     turn_off_action:
       - script.execute: deep_sleep_entry
@@ -67,7 +67,7 @@ sensor:
   - platform: adc
     pin: P23
     id: battery_adc
-    name: "${friendly_name} Battery Voltage"
+    name: "Battery Voltage"
     update_interval: never
     filters:
       - multiply: 4.58
@@ -77,7 +77,7 @@ binary_sensor:
     pin: P8
     device_class: "${device_class}"
     id: open_sensor
-    name: "${friendly_name} Open"
+    name: "Open"
     on_state:
       - script.execute: deep_sleep_entry
   - platform: gpio
@@ -88,7 +88,7 @@ binary_sensor:
         pullup: True
       inverted: True
     id: pinhole_btn
-    name: "${friendly_name} Pinhole Button"
+    name: "Pinhole Button"
     disabled_by_default: True
     on_multi_click:
       - timing:

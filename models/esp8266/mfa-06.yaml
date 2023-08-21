@@ -1,7 +1,7 @@
 substitutions:
   model: mfa-06
-  primary_switch_name: "${friendly_name} Light"
-  secondary_switch_name: "${friendly_name} Fan"
+  primary_switch_name: "Light"
+  secondary_switch_name: "Fan"
   primary_switch_timeout: "1 min"
   primary_switch_manual_off_timeout: "5s"
   secondary_switch_timeout: "15 min"

@@ -38,7 +38,7 @@ tuya: {}
 
 fan:
   - platform: "tuya"
-    name: "${friendly_name} Fan"
+    name: "Fan"
     id: fan0
     switch_datapoint: 1
     speed_datapoint: 3

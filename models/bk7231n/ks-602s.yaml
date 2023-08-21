@@ -22,7 +22,7 @@ binary_sensor:
 switch:
   - platform: gpio
     pin: P17
-    name: "${friendly_name} Switch"
+    name: "Switch"
     id: sw0
 
 status_led:

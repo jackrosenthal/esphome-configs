@@ -128,7 +128,7 @@ output:
 light:
   - platform: monochromatic
     output: pwm_output
-    name: "${friendly_name} Light"
+    name: "Light"
     id: dimmer
     on_turn_on:
       - output.turn_on: led1

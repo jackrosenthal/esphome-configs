@@ -30,7 +30,7 @@ binary_sensor:
 
 light:
   - platform: binary
-    name: "${friendly_name} Light"
+    name: "Light"
     id: light0
     output: relay0
     on_turn_on:

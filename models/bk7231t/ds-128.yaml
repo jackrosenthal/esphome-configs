@@ -40,7 +40,7 @@ switch:
   - platform: gpio
     pin: P26
     id: sw0
-    name: "${friendly_name} Light"
+    name: "Light"
     on_turn_on:
       then:
         - output.turn_on: green_led

@@ -86,7 +86,7 @@ binary_sensor:
 switch:
 - platform: gpio
   id: sw1
-  name: "${friendly_name} Switch 1"
+  name: "Switch 1"
   pin: P24
   on_turn_on:
   - output.turn_on: led1
@@ -94,7 +94,7 @@ switch:
   - output.turn_off: led1
 - platform: gpio
   id: sw2
-  name: "${friendly_name} Switch 2"
+  name: "Switch 2"
   pin: P26
   on_turn_on:
   - output.turn_on: led2
@@ -102,7 +102,7 @@ switch:
   - output.turn_off: led2
 - platform: gpio
   id: sw3
-  name: "${friendly_name} Switch 3"
+  name: "Switch 3"
   pin: P6
   on_turn_on:
   - output.turn_on: led3
@@ -110,7 +110,7 @@ switch:
   - output.turn_off: led3
 - platform: gpio
   id: sw4
-  name: "${friendly_name} Switch 4"
+  name: "Switch 4"
   pin: P7
   on_turn_on:
   - output.turn_on: led4

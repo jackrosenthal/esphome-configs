@@ -25,13 +25,13 @@ binary_sensor:
 switch:
   - platform: gpio
     pin: P26
-    name: "${friendly_name} AC Outlets"
+    name: "AC Outlets"
     id: sw0
     icon: mdi:power-socket-us
     restore_mode: RESTORE_DEFAULT_OFF
   - platform: gpio
     pin: P8
-    name: "${friendly_name} USB Ports"
+    name: "USB Ports"
     id: sw1
     icon: mdi:usb
     restore_mode: RESTORE_DEFAULT_ON

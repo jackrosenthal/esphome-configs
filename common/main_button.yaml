@@ -1,5 +1,5 @@
 id: main_button
-name: "${friendly_name} Button"
+name: "Button"
 disabled_by_default: True
 on_multi_click:
   - timing:
