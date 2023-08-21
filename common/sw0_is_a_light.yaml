@@ -24,7 +24,10 @@ output:
 
 switch:
   - id: !extend sw0
-    disabled_by_default: True
+    internal: True
+  - platform: "copy"
+    source_id: sw0
+    id: sw0_copy
     on_turn_on:
       - light.turn_on: sw0_light
     on_turn_off:
