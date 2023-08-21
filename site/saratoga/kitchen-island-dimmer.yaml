@@ -1,0 +1,8 @@
+substitutions:
+  name: kitchen-island-dimmer
+  friendly_name: "Kitchen Island Dimmer"
+  ip_address: 10.10.10.20
+
+packages:
+  feit-dimwifi-cb2s: !include "../../models/bk7231n/feit-dimwifi-cb2s.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

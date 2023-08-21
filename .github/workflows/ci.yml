@@ -1,5 +1,74 @@
 {
   "jobs": {
+    "device-saratoga-basement-tv-dimmer": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "touch site_config.yaml"
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile site/saratoga/basement-tv-dimmer.yaml"
+        }
+      ]
+    },
+    "device-saratoga-kitchen-island-dimmer": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "touch site_config.yaml"
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile site/saratoga/kitchen-island-dimmer.yaml"
+        }
+      ]
+    },
+    "device-saratoga-laundry-exterior-light": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "touch site_config.yaml"
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile site/saratoga/laundry-exterior-light.yaml"
+        }
+      ]
+    },
     "model-bk7231n-baa-032": {
       "runs-on": "ubuntu-22.04",
       "steps": [

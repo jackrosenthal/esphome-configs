@@ -1,0 +1,8 @@
+substitutions:
+  name: basement-tv-dimmer
+  friendly_name: "Basement TV Dimmer"
+  ip_address: 10.10.10.21
+
+packages:
+  feit-dimwifi-cb2s: !include "../../models/bk7231n/feit-dimwifi-cb2s.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

@@ -1,0 +1,9 @@
+substitutions:
+  name: laundry-exterior-light
+  friendly_name: "Laundry Exterior Light"
+  ip_address: 10.10.10.22
+
+packages:
+  ks-602s: !include "../../models/bk7231n/ks-602s.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"

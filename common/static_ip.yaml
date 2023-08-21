@@ -1,0 +1,8 @@
+esphome:
+  name_add_mac_suffix: False
+
+wifi:
+  manual_ip:
+    static_ip: "${ip_address}"
+    gateway: 10.10.10.1
+    subnet: 255.255.254.0

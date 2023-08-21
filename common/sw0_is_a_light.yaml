@@ -1,0 +1,31 @@
+light:
+  - platform: binary
+    name: "Light"
+    id: sw0_light
+    output: sw0_light_output
+
+output:
+  - platform: template
+    type: binary
+    id: sw0_light_output
+    write_action:
+      - if:
+          condition:
+            - lambda: "return state;"
+            - switch.is_off: sw0
+          then:
+            - switch.turn_on: sw0
+      - if:
+          condition:
+            - lambda: "return !state;"
+            - switch.is_on: sw0
+          then:
+            - switch.turn_off: sw0
+
+switch:
+  - id: !extend sw0
+    disabled_by_default: True
+    on_turn_on:
+      - light.turn_on: sw0_light
+    on_turn_off:
+      - light.turn_off: sw0_light

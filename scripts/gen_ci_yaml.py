@@ -13,6 +13,10 @@ def find_models():
         chip_name = model_yaml.parent.name
         model_name = model_yaml.stem
         yield f"model-{chip_name}-{model_name}", model_yaml
+    for site_yaml in REPO.glob("site/*/*.yaml"):
+        site_name = site_yaml.parent.name
+        device_name = site_yaml.stem
+        yield f"device-{site_name}-{device_name}", site_yaml
 
 
 def _run(cmd):
