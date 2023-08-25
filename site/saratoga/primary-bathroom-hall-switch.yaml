@@ -1,0 +1,9 @@
+substitutions:
+  name: primary-bathroom-hall-switch
+  friendly_name: "Primary Bathroom Hall Switch"
+  ip_address: 10.10.10.24
+
+packages:
+  ks-602f: !include "../../models/bk7231n/ks-602f.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"
