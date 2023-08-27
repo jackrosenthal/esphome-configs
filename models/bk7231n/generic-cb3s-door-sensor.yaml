@@ -10,7 +10,7 @@ packages:
 
 external_components:
   - source: github://Xmister/libretuya-esphome@deep-sleep
-    components: [ deep_sleep ]
+    components: [ deep_sleep, esp32 ]
 
 esphome:
   on_boot:
