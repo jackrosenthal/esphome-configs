@@ -51,12 +51,13 @@ script:
     mode: restart
     then:
       - output.turn_on: adc_vdiv
+      - delay: 2ms
       - component.update: battery_adc
       - output.turn_off: adc_vdiv
   - id: deep_sleep_entry
     mode: restart
     then:
-      - delay: 30s
+      - delay: 45s
       - if:
           condition:
             switch.is_off: inhibit_deep_sleep

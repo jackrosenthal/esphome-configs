@@ -1,0 +1,9 @@
+substitutions:
+  name: garage-door-sensor
+  friendly_name: "Garage Door Sensor"
+  ip_address: 10.10.10.26
+  device_class: garage_door
+
+packages:
+  generic-cb3s-door-sensor: !include "../../models/bk7231n/generic-cb3s-door-sensor.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
