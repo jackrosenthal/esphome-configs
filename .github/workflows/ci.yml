@@ -23,29 +23,6 @@
         }
       ]
     },
-    "device-saratoga-garage-door-sensor": {
-      "runs-on": "ubuntu-22.04",
-      "steps": [
-        {
-          "uses": "actions/checkout@v3"
-        },
-        {
-          "uses": "actions/setup-python@v4",
-          "with": {
-            "python-version": "3.10"
-          }
-        },
-        {
-          "run": "touch site_config.yaml"
-        },
-        {
-          "run": "pip install -r requirements.txt"
-        },
-        {
-          "run": "esphome compile site/saratoga/garage-door-sensor.yaml"
-        }
-      ]
-    },
     "device-saratoga-grill-light": {
       "runs-on": "ubuntu-22.04",
       "steps": [
@@ -250,29 +227,6 @@
         },
         {
           "run": "esphome compile models/bk7231n/generic-cb2s-smart-plug.yaml"
-        }
-      ]
-    },
-    "model-bk7231n-generic-cb3s-door-sensor": {
-      "runs-on": "ubuntu-22.04",
-      "steps": [
-        {
-          "uses": "actions/checkout@v3"
-        },
-        {
-          "uses": "actions/setup-python@v4",
-          "with": {
-            "python-version": "3.10"
-          }
-        },
-        {
-          "run": "touch site_config.yaml"
-        },
-        {
-          "run": "pip install -r requirements.txt"
-        },
-        {
-          "run": "esphome compile models/bk7231n/generic-cb3s-door-sensor.yaml"
         }
       ]
     },
