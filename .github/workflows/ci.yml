@@ -437,6 +437,29 @@
         }
       ]
     },
+    "model-bk7231n-ysdm102-cb3s": {
+      "runs-on": "ubuntu-22.04",
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "actions/setup-python@v4",
+          "with": {
+            "python-version": "3.10"
+          }
+        },
+        {
+          "run": "touch site_config.yaml"
+        },
+        {
+          "run": "pip install -r requirements.txt"
+        },
+        {
+          "run": "esphome compile models/bk7231n/ysdm102-cb3s.yaml"
+        }
+      ]
+    },
     "model-bk7231t-ds-122": {
       "runs-on": "ubuntu-22.04",
       "steps": [
