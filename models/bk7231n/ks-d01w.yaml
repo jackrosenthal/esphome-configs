@@ -104,7 +104,7 @@ binary_sensor:
                   brightness: 100%
 
 output:
-  - platform: ledc
+  - platform: libretiny_pwm
     pin: P8
     id: pwm_output
     min_power: 0.15
