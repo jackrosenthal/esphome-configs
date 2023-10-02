@@ -4,3 +4,4 @@
 /.esphome/
 /secrets.yaml
 /site_config.yaml
+/venv/
