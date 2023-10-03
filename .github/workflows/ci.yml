@@ -30,3 +30,14 @@ jobs:
       - run: touch site_config.yaml
       - run: pip install -r requirements.txt
       - run: esphome compile ${{ matrix.config }}
+  validate-no-duplicate-ips:
+    name: "Validate there are no duplicate IP addresses within each site"
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - run: touch site_config.yaml
+      - run: pip install -r requirements.txt
+      - run: scripts/validate_no_duplicate_ips.py
