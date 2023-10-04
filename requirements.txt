@@ -39,7 +39,7 @@ cryptography==41.0.4
     #   noiseprotocol
 ecdsa==0.18.0
     # via esptool
-esphome==2023.9.2
+esphome==2023.9.3
     # via -r requirements.in
 esphome-dashboard==20230904.0
     # via esphome
@@ -112,7 +112,7 @@ voluptuous==0.13.1
     # via esphome
 wsproto==1.2.0
     # via platformio
-zeroconf==0.112.0
+zeroconf==0.115.1
     # via
     #   aioesphomeapi
     #   esphome
