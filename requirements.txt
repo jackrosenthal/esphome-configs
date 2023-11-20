@@ -4,14 +4,14 @@
 #
 #    pip-compile
 #
-aioesphomeapi==15.0.0
+aioesphomeapi==18.5.2
     # via esphome
 ajsonrpc==1.2.0
     # via platformio
 anyio==4.0.0
     # via starlette
-async-timeout==4.0.3
-    # via aioesphomeapi
+argcomplete==3.1.6
+    # via esphome
 bitarray==2.8.1
     # via bitstring
 bitstring==4.1.2
@@ -22,6 +22,8 @@ certifi==2023.7.22
     # via requests
 cffi==1.16.0
     # via cryptography
+chacha20poly1305-reuseable==0.11.0
+    # via aioesphomeapi
 charset-normalizer==3.3.0
     # via requests
 click==8.1.7
@@ -35,13 +37,14 @@ colorama==0.4.6
     #   platformio
 cryptography==41.0.4
     # via
+    #   chacha20poly1305-reuseable
     #   esptool
     #   noiseprotocol
 ecdsa==0.18.0
     # via esptool
-esphome==2023.10.6
+esphome==2023.11.2
     # via -r requirements.in
-esphome-dashboard==20230904.0
+esphome-dashboard==20231107.0
     # via esphome
 esptool==4.6.2
     # via esphome
@@ -102,7 +105,7 @@ tornado==6.3.3
     # via esphome
 tzdata==2023.3
     # via esphome
-tzlocal==5.0.1
+tzlocal==5.2
     # via esphome
 urllib3==2.0.7
     # via requests
@@ -112,7 +115,7 @@ voluptuous==0.13.1
     # via esphome
 wsproto==1.2.0
     # via platformio
-zeroconf==0.115.1
+zeroconf==0.123.0
     # via
     #   aioesphomeapi
     #   esphome
