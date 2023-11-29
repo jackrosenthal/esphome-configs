@@ -33,7 +33,7 @@ colorama==0.4.6
     # via
     #   esphome
     #   platformio
-cryptography==41.0.4
+cryptography==41.0.6
     # via
     #   esptool
     #   noiseprotocol
