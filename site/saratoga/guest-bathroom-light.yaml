@@ -1,0 +1,9 @@
+substitutions:
+  name: guest-bathroom-light
+  friendly_name: "Guest Bathroom Light"
+  ip_address: 10.10.10.27
+
+packages:
+  ks-602s: !include "../../models/bk7231n/ks-602s.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"
