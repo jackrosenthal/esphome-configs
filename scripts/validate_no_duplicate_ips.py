@@ -3,9 +3,9 @@
 """For each site, validate there's no devices with duplicate IP addresses."""
 
 from pathlib import Path
+import subprocess
 
-import esphome.core
-import esphome.config
+import yaml
 
 
 REPO_DIR = Path(__file__).resolve().parent.parent
@@ -17,8 +17,15 @@ class ValidationError(Exception):
 
 
 def load_config(config_path: Path):
-    esphome.core.CORE.config_path = config_path
-    return esphome.config.read_config({})
+    result = subprocess.run(
+        ["esphome", "config", config_path],
+        check=True,
+        encoding="utf-8",
+        stdout=subprocess.PIPE,
+    )
+    loader = yaml.SafeLoader
+    loader.add_constructor("!lambda", lambda loader, node: "")
+    return yaml.load(result.stdout, Loader=loader)
 
 
 def get_ip(config):
