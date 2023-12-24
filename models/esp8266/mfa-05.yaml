@@ -1,0 +1,86 @@
+substitutions:
+  model: mfa-05
+  timeout: "1 min"
+  manual_off_timeout: "15 min"
+
+packages:
+  default: !include "../../common/default.yaml"
+
+esp8266:
+  board: esp01_1m
+
+script:
+  - id: activate
+    mode: restart
+    then:
+      - switch.turn_on: sw0
+      - delay: "${timeout}"
+      - switch.turn_off: sw0
+  - id: manual_off
+    mode: restart
+    then:
+      - script.stop: activate
+      - switch.turn_off: sw0
+      - delay: "${manual_off_timeout}"
+  - id: motion_detect
+    mode: restart
+    then:
+      - if:
+          condition:
+            not:
+              script.is_running: manual_off
+          then:
+            - script.execute: activate
+
+binary_sensor:
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
+    pin:
+      number: 0
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    on_press:
+      then:
+        - if:
+            condition:
+              switch.is_on: sw0
+            then:
+              - script.execute: manual_off
+            else:
+              - script.execute: activate
+  - platform: gpio
+    pin:
+      number: 5
+      inverted: True
+    name: "Motion Sensor"
+    id: motion_sensor
+    device_class: motion
+    on_press:
+      - output.turn_on: motion_led
+      - script.execute: motion_detect
+    on_release:
+      - output.turn_off: motion_led
+  - platform: gpio
+    pin:
+      number: 14
+    name: "Light Sensor"
+    device_class: light
+
+switch:
+  - platform: gpio
+    pin: 12
+    name: "Switch"
+    id: sw0
+
+output:
+  - platform: gpio
+    pin:
+      number: 13
+      inverted: True
+    id: motion_led
+
+status_led:
+  pin:
+    number: 16
