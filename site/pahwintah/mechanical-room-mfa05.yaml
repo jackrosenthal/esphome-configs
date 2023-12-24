@@ -1,0 +1,9 @@
+substitutions:
+  name: mechanical-room-mfa05
+  friendly_name: "Mechanical Room Light"
+  ip_address: 10.10.17.1
+
+packages:
+  mfa-05: !include "../../models/esp8266/mfa-05.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"
