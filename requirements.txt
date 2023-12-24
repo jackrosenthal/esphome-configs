@@ -10,23 +10,23 @@ aiohappyeyeballs==2.3.1
     # via aioesphomeapi
 ajsonrpc==1.2.0
     # via platformio
-anyio==4.0.0
+anyio==4.2.0
     # via starlette
-argcomplete==3.1.6
+argcomplete==3.2.1
     # via esphome
-bitarray==2.8.1
+bitarray==2.9.1
     # via bitstring
-bitstring==4.1.2
+bitstring==4.1.4
     # via esptool
 bottle==0.12.25
     # via platformio
-certifi==2023.7.22
+certifi==2023.11.17
     # via requests
 cffi==1.16.0
     # via cryptography
 chacha20poly1305-reuseable==0.12.0
     # via aioesphomeapi
-charset-normalizer==3.3.0
+charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via
@@ -37,14 +37,14 @@ colorama==0.4.6
     # via
     #   esphome
     #   platformio
-cryptography==41.0.6
+cryptography==41.0.7
     # via
     #   chacha20poly1305-reuseable
     #   esptool
     #   noiseprotocol
 ecdsa==0.18.0
     # via esptool
-esphome==2023.12.1
+esphome==2023.12.3
     # via -r requirements.in
 esphome-dashboard==20231107.0
     # via esphome
@@ -54,7 +54,7 @@ h11==0.14.0
     # via
     #   uvicorn
     #   wsproto
-idna==3.4
+idna==3.6
     # via
     #   anyio
     #   requests
@@ -72,7 +72,7 @@ paho-mqtt==1.6.1
     # via esphome
 platformio==6.1.11
     # via esphome
-protobuf==4.24.3
+protobuf==4.25.1
     # via aioesphomeapi
 pycparser==2.21
     # via cffi
@@ -111,7 +111,7 @@ tzdata==2023.3
     # via esphome
 tzlocal==5.2
     # via esphome
-urllib3==2.0.7
+urllib3==2.1.0
     # via requests
 uvicorn==0.23.2
     # via platformio
