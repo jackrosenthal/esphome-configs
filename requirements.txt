@@ -37,7 +37,7 @@ colorama==0.4.6
     # via
     #   esphome
     #   platformio
-cryptography==42.0.0
+cryptography==42.0.2
     # via
     #   chacha20poly1305-reuseable
     #   esptool
