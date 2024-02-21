@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-aioesphomeapi==21.0.1
+aioesphomeapi==21.0.2
     # via esphome
 aiohappyeyeballs==2.3.1
     # via aioesphomeapi
@@ -24,7 +24,7 @@ certifi==2023.11.17
     # via requests
 cffi==1.16.0
     # via cryptography
-chacha20poly1305-reuseable==0.12.0
+chacha20poly1305-reuseable==0.12.1
     # via aioesphomeapi
 charset-normalizer==3.3.2
     # via requests
@@ -39,27 +39,33 @@ colorama==0.4.6
     #   platformio
 cryptography==42.0.2
     # via
+    #   aioesphomeapi
     #   chacha20poly1305-reuseable
+    #   esphome
     #   esptool
     #   noiseprotocol
 ecdsa==0.18.0
     # via esptool
-esphome==2023.12.9
+esphome==2024.2.0
     # via -r requirements.in
 esphome-dashboard==20231107.0
     # via esphome
-esptool==4.6.2
+esptool==4.7.0
     # via esphome
 h11==0.14.0
     # via
     #   uvicorn
     #   wsproto
+icmplib==3.0.4
+    # via esphome
 idna==3.6
     # via
     #   anyio
     #   requests
 ifaddr==0.2.0
     # via zeroconf
+intelhex==2.3.0
+    # via esptool
 kconfiglib==13.7.1
     # via esphome
 marshmallow==3.20.1
@@ -70,13 +76,13 @@ packaging==23.2
     # via marshmallow
 paho-mqtt==1.6.1
     # via esphome
-platformio==6.1.11
+platformio==6.1.13
     # via esphome
 protobuf==4.25.1
     # via aioesphomeapi
 pycparser==2.21
     # via cffi
-pyelftools==0.29
+pyelftools==0.30
     # via platformio
 pyparsing==3.1.1
     # via esphome
@@ -119,7 +125,7 @@ voluptuous==0.14.1
     # via esphome
 wsproto==1.2.0
     # via platformio
-zeroconf==0.130.0
+zeroconf==0.131.0
     # via
     #   aioesphomeapi
     #   esphome
