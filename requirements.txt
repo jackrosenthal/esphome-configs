@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-aioesphomeapi==23.1.1
+aioesphomeapi==23.2.0
     # via esphome
 aiohappyeyeballs==2.3.1
     # via aioesphomeapi
@@ -48,9 +48,9 @@ cryptography==42.0.2
     #   noiseprotocol
 ecdsa==0.18.0
     # via esptool
-esphome==2024.3.2
+esphome==2024.4.0
     # via -r requirements.in
-esphome-dashboard==20240319.0
+esphome-dashboard==20240412.0
     # via esphome
 esptool==4.7.0
     # via esphome
