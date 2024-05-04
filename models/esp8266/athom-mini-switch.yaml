@@ -1,0 +1,39 @@
+substitutions:
+  model: "athom-mini-switch"
+
+esp8266:
+  board: esp8285
+
+packages:
+  default: !include "../../common/default.yaml"
+
+switch:
+  - platform: gpio
+    id: sw0
+    pin: 13
+
+light:
+  - platform: status_led
+    id: status
+    pin:
+      number: 4
+      inverted: true
+
+binary_sensor:
+  - platform: gpio
+    id: aux_switch
+    name: "Auxiliary Switch"
+    disabled_by_default: true
+    pin:
+      number: 14
+      mode: INPUT_PULLUP
+    on_state:
+      - switch.toggle: sw0
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
+    pin:
+      number: 3
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      - switch.toggle: sw0
