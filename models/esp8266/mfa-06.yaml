@@ -1,88 +1,17 @@
 substitutions:
   model: mfa-06
-  primary_switch_name: "Light"
-  secondary_switch_name: "Fan"
-  primary_switch_timeout: "1 min"
-  primary_switch_manual_off_timeout: "5s"
-  secondary_switch_timeout: "15 min"
 
 packages:
-  default: !include "../../common/default.yaml"
-
-esp8266:
-  board: esp01_1m
-
-script:
-  - id: primary_switch_activate
-    mode: restart
-    then:
-      - light.turn_on: primary_switch
-      - delay: "${primary_switch_timeout}"
-      - light.turn_off: primary_switch
-  - id: primary_switch_manual_off
-    mode: restart
-    then:
-      - script.stop: primary_switch_activate
-      - light.turn_off: primary_switch
-      - delay: "${primary_switch_manual_off_timeout}"
-  - id: motion_detect
-    mode: restart
-    then:
-      - if:
-          condition:
-            script.is_running: secondary_switch_activate
-          then:
-            - script.execute: secondary_switch_activate
-      - script.wait: primary_switch_manual_off
-      - if:
-          condition:
-            binary_sensor.is_on: motion_sensor
-          then:
-            - script.execute: primary_switch_activate
-  - id: primary_switch_toggle
-    mode: restart
-    then:
-      - if:
-          condition:
-            light.is_on: primary_switch
-          then:
-            - script.execute: primary_switch_manual_off
-          else:
-            - script.execute: primary_switch_activate
-  - id: secondary_switch_activate
-    mode: restart
-    then:
-      - fan.turn_on: secondary_switch
-      - delay: "${primary_switch_timeout}"
-      - fan.turn_off: secondary_switch
-  - id: secondary_switch_manual_off
-    mode: restart
-    then:
-      - script.stop: secondary_switch_activate
-      - fan.turn_off: secondary_switch
-  - id: secondary_switch_toggle
-    mode: restart
-    then:
-      - if:
-          condition:
-            fan.is_on: secondary_switch
-          then:
-            - script.execute: secondary_switch_manual_off
-          else:
-            - script.execute: secondary_switch_activate
+  mfa-05: !include "mfa-05.yaml"
 
 binary_sensor:
-  - platform: gpio
+  - id: !extend main_button
     pin:
       number: 4
       mode:
         input: True
         pullup: True
       inverted: True
-    id: primary_button
-    on_press:
-      then:
-        - script.execute: primary_switch_toggle
   - platform: gpio
     pin:
       number: 0
@@ -93,44 +22,26 @@ binary_sensor:
     id: secondary_button
     on_press:
       then:
-        - script.execute: secondary_switch_toggle
-  - platform: gpio
-    pin:
-      number: 5
-      inverted: True
-    name: "Motion Sensor"
-    id: motion_sensor
-    device_class: motion
-    on_press:
-      then:
-        - script.execute: motion_detect
-  - platform: gpio
-    pin:
-      number: 14
-    name: "Light Sensor"
-    device_class: light
+        - switch.toggle: sw1
 
-light:
-  - platform: binary
-    name: "${primary_switch_name}"
-    id: primary_switch
-    output: primary_relay
-
-fan:
-  - platform: binary
-    name: "${secondary_switch_name}"
-    id: secondary_switch
-    output: secondary_relay
-
-output:
-  - platform: gpio
+switch:
+  - id: !extend sw0
     pin: 12
-    id: primary_relay
+    name: "Output 1"
   - platform: gpio
     pin: 16
-    id: secondary_relay
+    name: "Output 2"
+    id: sw1
 
-status_led:
-  pin:
-    number: 13
-    inverted: True
+output:
+  - id: !remove motion_led
+  - id: motion_led
+    platform: template
+    type: binary
+    write_action: []
+
+light:
+  - id: !extend status
+    pin:
+      number: 13
+      inverted: True

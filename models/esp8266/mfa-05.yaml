@@ -49,6 +49,7 @@ binary_sensor:
             then:
               - script.execute: manual_off
             else:
+              - script.stop: manual_off
               - script.execute: activate
   - platform: gpio
     pin:
@@ -81,6 +82,8 @@ output:
       inverted: True
     id: motion_led
 
-status_led:
-  pin:
-    number: 16
+light:
+  - platform: status_led
+    id: status
+    pin:
+      number: 16
