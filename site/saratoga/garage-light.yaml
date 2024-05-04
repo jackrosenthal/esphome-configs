@@ -1,0 +1,12 @@
+substitutions:
+  name: garage-light
+  friendly_name: "Garage Light"
+  ip_address: 10.10.10.28
+
+packages:
+  athom_mini_switch: !include "../../models/esp8266/athom-mini-switch.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"
+
+binary_sensor:
+  - id: !remove aux_switch
