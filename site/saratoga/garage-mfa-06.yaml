@@ -1,0 +1,56 @@
+substitutions:
+  name: garage-mfa-06
+  friendly_name: "Garage MFA-06"
+  ip_address: 10.10.10.29
+  timeout: 5 minutes
+
+packages:
+  mfa-06: !include "../../models/esp8266/mfa-06.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw1_is_a_light: !include "../../common/sw1_is_a_light.yaml"
+
+http_request:
+  esp8266_disable_ssl_support: true
+
+switch:
+  - id: !remove sw0
+
+script:
+  - id: remote_sw0
+    parameters:
+      action: string
+    then:
+      - http_request.post:
+          headers:
+            Authorization: "${http_auth_header}"
+          url: !lambda |-
+            return "http://10.10.10.28/switch/sw0/" + action;
+  - id: !remove motion_detect
+  - id: motion_detect
+    mode: restart
+    then:
+      - script.execute:
+          id: remote_sw0
+          action: turn_on
+      - delay: "${timeout}"
+      - script.execute:
+          id: remote_sw0
+          action: turn_off
+  - id: !remove manual_off
+  - id: !remove activate
+
+binary_sensor:
+  - id: !remove main_button
+  - id: main_button
+    platform: gpio
+    pin:
+      number: 4
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    on_press:
+      then:
+        - script.execute:
+            id: remote_sw0
+            action: toggle
