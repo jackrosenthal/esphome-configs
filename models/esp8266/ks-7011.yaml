@@ -9,6 +9,9 @@ esp8266:
   framework:
     version: recommended
 
+script:
+  - id: !remove main_button_press
+
 logger:
   # Disable serial port (conflict with Tuya MCU).
   baud_rate: 0

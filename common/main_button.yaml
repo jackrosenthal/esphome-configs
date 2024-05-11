@@ -5,7 +5,7 @@ on_multi_click:
   - timing:
       - ON for at most 0.5s
     then:
-      - switch.toggle: "${switch_id}"
+      - script.execute: main_button_press
   - timing:
       - ON for 4s to 10s
       - OFF for at most 10s

@@ -13,6 +13,9 @@ bk72xx:
   framework:
     version: dev
 
+script:
+  - id: !remove main_button_press
+
 logger:
   # Disable serial logging (conflict with Tuya MCU).
   baud_rate: 0

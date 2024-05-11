@@ -26,6 +26,12 @@ wifi:
 web_server:
   port: 80
 
+script:
+  - id: main_button_press
+    mode: single
+    then:
+      - switch.toggle: "${switch_id}"
+
 button:
   - platform: restart
     name: "Restart"

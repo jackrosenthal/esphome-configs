@@ -38,19 +38,10 @@ script:
           action: turn_off
   - id: !remove manual_off
   - id: !remove activate
-
-binary_sensor:
-  - id: !remove main_button
-  - id: main_button
-    platform: gpio
-    pin:
-      number: 4
-      mode:
-        input: True
-        pullup: True
-      inverted: True
-    on_press:
-      then:
-        - script.execute:
-            id: remote_sw0
-            action: toggle
+  - id: !remove main_button_press
+  - id: main_button_press
+    mode: single
+    then:
+      - script.execute:
+          id: remote_sw0
+          action: toggle

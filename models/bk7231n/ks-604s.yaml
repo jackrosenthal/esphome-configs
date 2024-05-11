@@ -12,6 +12,7 @@
 
 substitutions:
   model: ks-604s
+  switch_id: upper_outlet
 
 packages:
   default: !include "../../common/default.yaml"
@@ -22,12 +23,9 @@ bk72xx:
     version: dev
 
 binary_sensor:
-  - platform: gpio
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
     pin: P11
-    id: upper_button
-    on_press:
-      then:
-        - switch.toggle: upper_outlet
   - platform: gpio
     pin: P24
     id: lower_button

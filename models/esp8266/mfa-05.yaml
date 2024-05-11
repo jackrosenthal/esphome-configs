@@ -31,6 +31,18 @@ script:
               script.is_running: manual_off
           then:
             - script.execute: activate
+  - id: !remove main_button_press
+  - id: main_button_press
+    mode: single
+    then:
+      - if:
+          condition:
+            switch.is_on: sw0
+          then:
+            - script.execute: manual_off
+          else:
+            - script.stop: manual_off
+            - script.execute: activate
 
 binary_sensor:
   - <<: !include "../../common/main_button.yaml"
@@ -41,16 +53,6 @@ binary_sensor:
         input: True
         pullup: True
       inverted: True
-    on_press:
-      then:
-        - if:
-            condition:
-              switch.is_on: sw0
-            then:
-              - script.execute: manual_off
-            else:
-              - script.stop: manual_off
-              - script.execute: activate
   - platform: gpio
     pin:
       number: 5

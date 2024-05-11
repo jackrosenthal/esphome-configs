@@ -10,16 +10,12 @@ bk72xx:
     version: dev
 
 binary_sensor:
-  - platform: gpio
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
     pin:
       number: P14
       mode: INPUT_PULLUP
       inverted: True
-    id: btn1
-    name: "Button 1"
-    on_press:
-      then:
-        - switch.toggle: sw1
   - platform: gpio
     pin:
       number: P16
@@ -29,7 +25,7 @@ binary_sensor:
     name: "Button 2"
     on_press:
       then:
-        - switch.toggle: sw2
+        - switch.toggle: sw1
   - platform: gpio
     pin:
       number: P9
@@ -39,41 +35,41 @@ binary_sensor:
     name: "Button 3"
     on_press:
       then:
-        - switch.toggle: sw3
+        - switch.toggle: sw2
 
 output:
   - platform: gpio
     pin: P20
-    id: led1
+    id: led0
   - platform: gpio
     pin: P8
-    id: led2
+    id: led1
   - platform: gpio
     pin: P28
-    id: led3
+    id: led2
 
 switch:
   - platform: gpio
-    id: sw1
+    id: sw0
     pin: P6
     name: "Switch 1"
+    on_turn_on:
+      - output.turn_on: led0
+    on_turn_off:
+      - output.turn_off: led0
+  - platform: gpio
+    id: sw1
+    pin: P26
+    name: "Switch 2"
     on_turn_on:
       - output.turn_on: led1
     on_turn_off:
       - output.turn_off: led1
   - platform: gpio
     id: sw2
-    pin: P26
-    name: "Switch 2"
+    pin: P24
+    name: "Switch 3"
     on_turn_on:
       - output.turn_on: led2
     on_turn_off:
       - output.turn_off: led2
-  - platform: gpio
-    id: sw3
-    pin: P24
-    name: "Switch 3"
-    on_turn_on:
-      - output.turn_on: led3
-    on_turn_off:
-      - output.turn_off: led3
