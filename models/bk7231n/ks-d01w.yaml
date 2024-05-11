@@ -38,18 +38,22 @@ bk72xx:
   framework:
     version: dev
 
+script:
+  - id: !remove main_button_press
+  - id: main_button_press
+    mode: single
+    then:
+      - light.toggle: dimmer
+
 binary_sensor:
-  - platform: gpio
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
     pin:
       number: P9
       mode:
         input: True
         pullup: True
       inverted: True
-    id: main_button
-    on_press:
-      then:
-        - light.toggle: dimmer
   - platform: gpio
     pin:
       number: P20
