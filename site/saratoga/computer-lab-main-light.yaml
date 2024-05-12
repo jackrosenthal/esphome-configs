@@ -1,0 +1,9 @@
+substitutions:
+  name: computer-lab-main-light
+  friendly_name: "Computer Lab Main Light"
+  ip_address: 10.10.10.32
+
+packages:
+  ds-122: !include "../../models/bk7231t/ds-122.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"

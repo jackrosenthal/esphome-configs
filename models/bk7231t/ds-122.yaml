@@ -6,8 +6,6 @@ packages:
 
 bk72xx:
   board: wb3s
-  framework:
-    version: dev
 
 binary_sensor:
   - <<: !include "../../common/main_button.yaml"
