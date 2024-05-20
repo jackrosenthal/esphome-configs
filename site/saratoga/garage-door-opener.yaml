@@ -1,0 +1,118 @@
+substitutions:
+  name: garage-door-opener
+  friendly_name: "Garage Door Opener"
+  ip_address: 10.10.10.34
+
+packages:
+  default: !include "../../common/default.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+
+esp8266:
+  board: esp01_1m
+  restore_from_flash: True
+
+script:
+  - id: !remove main_button_press
+
+interval:
+  - interval: 100ms
+    then:
+      - lambda: |-
+          static int last_ticks;
+          int ticks = id(door_open_ticks).state;
+
+          auto position = id(garage_door).position;
+          auto current_operation = id(garage_door).current_operation;
+
+          if (ticks == 0) {
+            position = COVER_CLOSED;
+            current_operation = COVER_OPERATION_IDLE;
+          } else if (ticks == 110) {
+            position = COVER_OPEN;
+            current_operation = COVER_OPERATION_IDLE;
+          } else {
+            position = ticks / 110.0;
+            if (ticks == last_ticks)
+              current_operation = COVER_OPERATION_IDLE;
+            else if (ticks < last_ticks)
+              current_operation = COVER_OPERATION_CLOSING;
+            else if (ticks > last_ticks)
+              current_operation = COVER_OPERATION_OPENING;
+          }
+
+          if (current_operation == COVER_OPERATION_IDLE && ticks < 30) {
+            id(door_open_ticks).set_value(0);
+            position = COVER_CLOSED;
+          }
+
+          if (position != id(garage_door).position ||
+              current_operation != id(garage_door).current_operation) {
+            id(garage_door).position = position;
+            id(garage_door).current_operation = current_operation;
+            id(garage_door).publish_state();
+          }
+          last_ticks = ticks;
+
+output:
+  - platform: gpio
+    pin: GPIO15
+    id: output_gpio
+
+button:
+  - platform: output
+    name: "Garage Door Button"
+    id: garage_door_button
+    output: output_gpio
+    duration: 250ms
+
+sensor:
+  - platform: rotary_encoder
+    pin_a: GPIO4
+    pin_b: GPIO5
+    min_value: 0
+    max_value: 110
+    id: door_open_ticks
+    name: "Door Open Ticks"
+    publish_initial_value: True
+
+cover:
+  - platform: template
+    name: "Garage Door"
+    id: garage_door
+    device_class: garage
+    open_action:
+      - while:
+          condition:
+            lambda: |-
+              if (id(garage_door).is_fully_open())
+                return false;
+              if (id(garage_door).current_operation == COVER_OPERATION_OPENING)
+                return false;
+              return true;
+          then:
+            - cover.stop: garage_door
+            - delay: 1000ms
+            - button.press: garage_door_button
+            - delay: 1000ms
+    close_action:
+      - while:
+          condition:
+            lambda: |-
+              if (id(garage_door).is_fully_closed())
+                return false;
+              if (id(garage_door).current_operation == COVER_OPERATION_CLOSING)
+                return false;
+              return true;
+          then:
+            - cover.stop: garage_door
+            - delay: 1000ms
+            - button.press: garage_door_button
+            - delay: 1000ms
+    stop_action:
+      - while:
+          condition:
+            lambda: |-
+              return id(garage_door).current_operation != COVER_OPERATION_IDLE;
+          then:
+            - button.press: garage_door_button
+            - delay: 1000ms
