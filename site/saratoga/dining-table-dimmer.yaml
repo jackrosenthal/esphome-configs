@@ -1,0 +1,8 @@
+substitutions:
+  name: dining-table-dimmer
+  friendly_name: "Dining Table Dimmer"
+  ip_address: 10.10.10.35
+
+packages:
+  ks-d01w: !include "../../models/bk7231n/ks-d01w.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
