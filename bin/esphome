@@ -3,6 +3,7 @@
 """Launcher for esphome."""
 
 import hashlib
+import os
 import subprocess
 import sys
 import venv
@@ -54,6 +55,7 @@ def main():
     esphome_cmd = venv_dir / "bin" / "esphome"
     if not esphome_cmd.is_file():
         build_venv(venv_dir, requirements_file)
+    os.environ.setdefault("ESPHOME_DATA_DIR", str(here.parent / ".esphome"))
     sys.exit(subprocess.run([esphome_cmd] + sys.argv[1:]).returncode)
 
 

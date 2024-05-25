@@ -29,7 +29,7 @@ jobs:
           python-version: 3.11
       - run: touch site_config.yaml
       - run: pip install -r requirements.txt
-      - run: esphome compile ${{ matrix.config }}
+      - run: ESPHOME_DATA_DIR="${PWD}/.esphome" esphome compile ${{ matrix.config }}
   validate-no-duplicate-ips:
     name: "Validate there are no duplicate IP addresses within each site"
     runs-on: ubuntu-22.04
