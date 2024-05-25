@@ -78,7 +78,7 @@ packaging==24.0
     # via marshmallow
 paho-mqtt==1.6.1
     # via esphome
-pillow==10.2.0
+pillow==10.3.0
     # via -r requirements.in
 platformio==6.1.15
     # via esphome
