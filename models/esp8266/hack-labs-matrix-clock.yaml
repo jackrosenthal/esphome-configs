@@ -1,0 +1,85 @@
+substitutions:
+  model: hack-labs-matrix-clock
+
+packages:
+  default: !include "../../common/default.yaml"
+
+esp8266:
+  board: esp01_1m
+
+binary_sensor:
+  - <<: !include "../../common/main_button.yaml"
+    platform: gpio
+    name: "Download Button"
+    pin:
+      number: 0
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+  - platform: gpio
+    id: mercury_switch
+    name: "Mercury Switch"
+    pin:
+      number: 16
+      mode:
+        input: True
+      inverted: True
+
+font:
+  - file: "../../fonts/5x8everex.bdf"
+    id: big_font
+  - file: "../../fonts/tom-thumb.bdf"
+    id: small_font
+
+script:
+  - id: !remove main_button_press
+  - id: main_button_press
+    then:
+      - select.next: display_page
+
+spi:
+  clk_pin: 14
+  mosi_pin: 13
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: America/Denver
+    servers:
+      - 142.147.88.111
+      - 104.167.215.195
+      - 23.168.24.210
+
+select:
+  - platform: template
+    id: display_page
+    optimistic: true
+    options:
+      - clock
+      - date
+    initial_option: clock
+
+display:
+  - platform: max7219digit
+    id: matrix_display
+    cs_pin: 15
+    num_chips: 4
+    reverse_enable: true
+    lambda: |-
+      if (id(mercury_switch).state) {
+        it.set_rotation(DISPLAY_ROTATION_180_DEGREES);
+      } else {
+        it.set_rotation(DISPLAY_ROTATION_0_DEGREES);
+      }
+
+      std::string page = id(display_page).state;
+      if (page == "clock") {
+        it.strftime(0, 1, id(big_font), "%H", id(sntp_time).now());
+        it.draw_pixel_at(10, 3, COLOR_ON);
+        it.draw_pixel_at(10, 6, COLOR_ON);
+        it.strftime(12, 1, id(big_font), "%M", id(sntp_time).now());
+        it.strftime(25, 3, id(small_font), "%S", id(sntp_time).now());
+      } else if (page == "date") {
+        it.strftime(1, 0, id(big_font), "%b %d", id(sntp_time).now());
+      }
