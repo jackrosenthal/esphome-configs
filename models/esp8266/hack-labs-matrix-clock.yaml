@@ -96,8 +96,7 @@ select:
       - Clock
       - Date
       - Unix Time
-      - Text Large
-      - Text Small
+      - Text
     initial_option: Clock
     restore_value: true
 
@@ -137,7 +136,7 @@ display:
           it.printf(0, 0, id(small_font), "%lld", timestamp / 100);
           it.draw_pixel_at(half_minute_prog, 7, COLOR_ON);
         }
-      } else if (page == "Text Large" || page == "Text Small") {
+      } else if (page == "Text") {
         static size_t pos;
         static bool advance;
 
@@ -148,8 +147,18 @@ display:
         if (pos_end == std::string::npos)
           pos_end = id(ha_text).state.length();
 
+        while (pos_end - pos >= 9) {
+          size_t pos_space = id(ha_text).state.rfind(" ", pos_end - 1);
+          if (pos_space == std::string::npos) {
+            break;
+          } else if (pos_space <= pos) {
+            break;
+          }
+          pos_end = pos_space;
+        }
+
         auto font = id(big_font);
-        if (page == "Text Small")
+        if (pos_end - pos >= 6)
           font = id(small_font);
 
         auto word = id(ha_text).state.substr(pos, pos_end - pos);
