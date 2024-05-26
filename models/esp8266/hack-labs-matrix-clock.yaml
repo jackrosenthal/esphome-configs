@@ -26,6 +26,7 @@ binary_sensor:
   - platform: gpio
     id: mercury_switch
     name: "Mercury Switch"
+    disabled_by_default: true
     pin:
       number: 16
       mode:
@@ -67,14 +68,38 @@ time:
       - ds1307.write_time:
           id: ds3231_rtc
 
+number:
+  - platform: template
+    id: display_brightness
+    name: "Display Brightness"
+    optimistic: true
+    min_value: 0
+    max_value: 15
+    step: 1
+    restore_value: true
+    initial_value: 15
+
+text:
+  - platform: template
+    id: ha_text
+    name: "Text"
+    optimistic: true
+    mode: text
+    restore_value: true
+
 select:
   - platform: template
     id: display_page
+    name: "Display Page"
     optimistic: true
     options:
-      - clock
-      - date
-    initial_option: clock
+      - Clock
+      - Date
+      - Unix Time
+      - Text Large
+      - Text Small
+    initial_option: Clock
+    restore_value: true
 
 display:
   - platform: max7219digit
@@ -83,6 +108,8 @@ display:
     num_chips: 4
     reverse_enable: true
     lambda: |-
+      it.intensity(id(display_brightness).state);
+
       if (id(mercury_switch).state) {
         it.set_rotation(DISPLAY_ROTATION_180_DEGREES);
       } else {
@@ -90,12 +117,47 @@ display:
       }
 
       std::string page = id(display_page).state;
-      if (page == "clock") {
+      if (page == "Clock") {
         it.strftime(0, 1, id(big_font), "%H", id(ds3231_rtc).now());
         it.draw_pixel_at(10, 3, COLOR_ON);
         it.draw_pixel_at(10, 6, COLOR_ON);
         it.strftime(12, 1, id(big_font), "%M", id(ds3231_rtc).now());
         it.strftime(25, 3, id(small_font), "%S", id(ds3231_rtc).now());
-      } else if (page == "date") {
-        it.strftime(1, 0, id(big_font), "%b %d", id(ds3231_rtc).now());
+      } else if (page == "Date") {
+        it.strftime(16, 4, id(big_font), TextAlign::CENTER, "%b %d", id(ds3231_rtc).now());
+      } else if (page == "Unix Time") {
+        auto timestamp = id(sntp_time).utcnow().timestamp;
+        int seconds = timestamp % 60;
+        int half_minute_prog = seconds % 30;
+
+        if (seconds < 30) {
+          it.printf(0, 3, id(small_font), "%lld", timestamp / 100);
+          it.draw_pixel_at(half_minute_prog, 0, COLOR_ON);
+        } else {
+          it.printf(0, 0, id(small_font), "%lld", timestamp / 100);
+          it.draw_pixel_at(half_minute_prog, 7, COLOR_ON);
+        }
+      } else if (page == "Text Large" || page == "Text Small") {
+        static size_t pos;
+        static bool advance;
+
+        if (pos >= id(ha_text).state.length())
+          pos = 0;
+
+        size_t pos_end = id(ha_text).state.find("&", pos);
+        if (pos_end == std::string::npos)
+          pos_end = id(ha_text).state.length();
+
+        auto font = id(big_font);
+        if (page == "Text Small")
+          font = id(small_font);
+
+        auto word = id(ha_text).state.substr(pos, pos_end - pos);
+        it.print(16, 4, font, TextAlign::CENTER, word.c_str());
+        if (advance) {
+          pos = pos_end + 1;
+          advance = false;
+        } else {
+          advance = true;
+        }
       }
