@@ -1,0 +1,8 @@
+substitutions:
+  name: hack-clock-green-01
+  friendly_name: "Hack Clock 1"
+  ip_address: 10.10.10.36
+
+packages:
+  hack-labs-matrix-clock: !include "../../models/esp8266/hack-labs-matrix-clock.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
