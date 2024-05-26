@@ -4,6 +4,12 @@ substitutions:
 packages:
   default: !include "../../common/default.yaml"
 
+esphome:
+  on_boot:
+    then:
+      - ds1307.read_time:
+          id: ds3231_rtc
+
 esp8266:
   board: esp01_1m
 
@@ -42,7 +48,14 @@ spi:
   clk_pin: 14
   mosi_pin: 13
 
+i2c:
+  sda: 5
+  scl: 4
+
 time:
+  - platform: ds1307
+    id: ds3231_rtc
+    address: 0x68
   - platform: sntp
     id: sntp_time
     timezone: America/Denver
@@ -50,6 +63,9 @@ time:
       - 142.147.88.111
       - 104.167.215.195
       - 23.168.24.210
+    on_time_sync:
+      - ds1307.write_time:
+          id: ds3231_rtc
 
 select:
   - platform: template
@@ -75,11 +91,11 @@ display:
 
       std::string page = id(display_page).state;
       if (page == "clock") {
-        it.strftime(0, 1, id(big_font), "%H", id(sntp_time).now());
+        it.strftime(0, 1, id(big_font), "%H", id(ds3231_rtc).now());
         it.draw_pixel_at(10, 3, COLOR_ON);
         it.draw_pixel_at(10, 6, COLOR_ON);
-        it.strftime(12, 1, id(big_font), "%M", id(sntp_time).now());
-        it.strftime(25, 3, id(small_font), "%S", id(sntp_time).now());
+        it.strftime(12, 1, id(big_font), "%M", id(ds3231_rtc).now());
+        it.strftime(25, 3, id(small_font), "%S", id(ds3231_rtc).now());
       } else if (page == "date") {
-        it.strftime(1, 0, id(big_font), "%b %d", id(sntp_time).now());
+        it.strftime(1, 0, id(big_font), "%b %d", id(ds3231_rtc).now());
       }
