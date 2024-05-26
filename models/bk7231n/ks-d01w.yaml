@@ -64,9 +64,9 @@ binary_sensor:
     id: brightness_down_button
     filters:
       autorepeat:
-        - delay: 500ms
+        - delay: 250ms
           time_off: 15ms
-          time_on: 485ms
+          time_on: 15ms
     on_press:
       then:
         - if:
@@ -90,9 +90,9 @@ binary_sensor:
     id: brightness_up_button
     filters:
       autorepeat:
-        - delay: 500ms
+        - delay: 250ms
           time_off: 15ms
-          time_on: 485ms
+          time_on: 15ms
     on_press:
       then:
         - if:
@@ -111,7 +111,7 @@ output:
   - platform: libretiny_pwm
     pin: P8
     id: pwm_output
-    min_power: 0.150
+    min_power: 0.100
     max_power: 0.999
     zero_means_zero: true
   - platform: gpio
@@ -135,6 +135,7 @@ light:
     output: pwm_output
     name: "Light"
     id: dimmer
+    default_transition_length: 2s
     on_turn_on:
       - output.turn_on: led1
     on_turn_off:
