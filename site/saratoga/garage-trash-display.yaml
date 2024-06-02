@@ -1,0 +1,112 @@
+substitutions:
+  name: garage-trash-display
+  friendly_name: "Garage Trash Display"
+  ip_address: 10.10.10.37
+
+packages:
+  default: !include "../../common/default.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+
+esp8266:
+  board: esp01_1m
+  restore_from_flash: True
+
+script:
+  - id: !remove main_button_press
+
+i2c:
+  sda: GPIO4
+  scl: GPIO5
+
+switch:
+  - platform: template
+    id: recycling_next
+    name: "Recycling Next"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: template
+    id: compost_next
+    name: "Compost Next"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+  - platform: template
+    id: trash_next
+    name: "Trash Next"
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: America/Denver
+    servers:
+      - 142.147.88.111
+      - 104.167.215.195
+      - 23.168.24.210
+
+datetime:
+  - platform: template
+    id: collection_date
+    name: "Next Collection Date"
+    initial_value: "2024-01-01"
+    type: date
+    optimistic: true
+    restore_value: true
+
+display:
+  - platform: lcd_pcf8574
+    dimensions: 16x2
+    address: 0x27
+    lambda: |-
+      auto esptime = id(collection_date).state_as_esptime();
+      esptime.hour = 0;
+      esptime.minute = 0;
+      esptime.second = 0;
+      esptime.day_of_week = 1;
+      esptime.day_of_year = 1;
+      esptime.recalc_timestamp_local(false);
+      auto today = id(sntp_time).now();
+      today.hour = 0;
+      today.minute = 0;
+      today.second = 0;
+      today.recalc_timestamp_local();
+      if (esptime.year == today.year && esptime.month == today.month && esptime.day_of_month == today.day_of_month) {
+        it.print(5, 0, "Today");
+      } else if (today < esptime) {
+        time_t seconds_delta = esptime.timestamp - today.timestamp;
+        int days_delta = seconds_delta / 86400;
+        if (days_delta == 1) {
+          it.print(4, 0, "Tomorrow");
+        } else {
+          int day_of_week = today.day_of_week - 1;
+          day_of_week += days_delta;
+          day_of_week %= 7;
+          esptime.day_of_week = day_of_week + 1;
+          it.strftime(2, 0, "%a, %b %d", esptime);
+        }
+      } else {
+        it.strftime(2, 0, "%Y-%m-%d", esptime);
+      }
+
+      std::string bins = "";
+      if (id(trash_next).state) {
+        bins += "Trash";
+      }
+      if (id(compost_next).state) {
+        bins += " Compost";
+      }
+      if (id(recycling_next).state) {
+        bins += " Recycling";
+      }
+
+      if (bins.length() > 16) {
+        bins.replace(bins.find("Recycling"), sizeof("Recycling") - 1, "Recycle");
+      }
+      if (bins.length() > 16) {
+        bins.replace(bins.find("Compost"), sizeof("Compost") - 1, "Comp");
+      }
+      if (bins.length() > 16) {
+        bins.replace(bins.find("Trash"), sizeof("Trash") - 1, "Tr");
+      }
+
+      it.print((16 - bins.length()) / 2, 1, bins);
