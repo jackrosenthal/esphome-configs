@@ -18,7 +18,8 @@ network: {}
 logger: {}
 api: {}
 mdns: {}
-ota: {}
+ota:
+  platform: esphome
 captive_portal: {}
 wifi:
   power_save_mode: NONE
