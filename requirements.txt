@@ -48,7 +48,7 @@ cryptography==42.0.2
     #   noiseprotocol
 ecdsa==0.19.0
     # via esptool
-esphome==2024.6.1
+esphome==2024.6.2
     # via -r requirements.in
 esphome-dashboard==20240620.0
     # via esphome
