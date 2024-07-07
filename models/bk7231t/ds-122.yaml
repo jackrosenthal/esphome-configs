@@ -2,7 +2,7 @@ substitutions:
   model: ds-122
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 bk72xx:
   board: wb3s

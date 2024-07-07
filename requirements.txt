@@ -4,10 +4,20 @@
 #
 #    pip-compile requirements.in
 #
+aiobotocore==2.13.1
+    # via s3fs
 aioesphomeapi==24.3.0
     # via esphome
 aiohappyeyeballs==2.3.2
     # via aioesphomeapi
+aiohttp==3.9.5
+    # via
+    #   aiobotocore
+    #   s3fs
+aioitertools==0.11.0
+    # via aiobotocore
+aiosignal==1.3.1
+    # via aiohttp
 ajsonrpc==1.2.0
     # via platformio
 anyio==4.4.0
@@ -16,10 +26,14 @@ argcomplete==3.4.0
     # via esphome
 async-interrupt==1.1.1
     # via aioesphomeapi
+attrs==23.2.0
+    # via aiohttp
 bitarray==2.9.2
     # via bitstring
 bitstring==4.2.3
     # via esptool
+botocore==1.34.131
+    # via aiobotocore
 bottle==0.12.25
     # via platformio
 certifi==2024.7.4
@@ -54,6 +68,12 @@ esphome-dashboard==20240620.0
     # via esphome
 esptool==4.7.0
     # via esphome
+frozenlist==1.4.1
+    # via
+    #   aiohttp
+    #   aiosignal
+fsspec==2024.6.1
+    # via s3fs
 h11==0.14.0
     # via
     #   uvicorn
@@ -64,14 +84,21 @@ idna==3.7
     # via
     #   anyio
     #   requests
+    #   yarl
 ifaddr==0.2.0
     # via zeroconf
 intelhex==2.3.0
     # via esptool
+jmespath==1.0.1
+    # via botocore
 kconfiglib==13.7.1
     # via esphome
 marshmallow==3.21.3
     # via platformio
+multidict==6.0.5
+    # via
+    #   aiohttp
+    #   yarl
 noiseprotocol==0.3.1
     # via aioesphomeapi
 packaging==24.1
@@ -95,6 +122,8 @@ pyserial==3.5
     #   esphome
     #   esptool
     #   platformio
+python-dateutil==2.9.0.post0
+    # via botocore
 python-magic==0.4.27
     # via esphome
 pyyaml==6.0.1
@@ -109,10 +138,14 @@ ruamel-yaml==0.18.6
     # via esphome
 ruamel-yaml-clib==0.2.8
     # via ruamel-yaml
+s3fs==2024.6.1
+    # via -r requirements.in
 semantic-version==2.10.0
     # via platformio
 six==1.16.0
-    # via ecdsa
+    # via
+    #   ecdsa
+    #   python-dateutil
 sniffio==1.3.1
     # via anyio
 starlette==0.37.2
@@ -126,13 +159,19 @@ tzdata==2024.1
 tzlocal==5.2
     # via esphome
 urllib3==2.2.2
-    # via requests
+    # via
+    #   botocore
+    #   requests
 uvicorn==0.29.0
     # via platformio
 voluptuous==0.14.2
     # via esphome
+wrapt==1.16.0
+    # via aiobotocore
 wsproto==1.2.0
     # via platformio
+yarl==1.9.4
+    # via aiohttp
 zeroconf==0.132.2
     # via
     #   aioesphomeapi

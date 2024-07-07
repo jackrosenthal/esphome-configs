@@ -2,10 +2,7 @@ substitutions:
   model: mfa-03
 
 packages:
-  default: !include "../../common/default.yaml"
-
-esp8266:
-  board: esp01_1m
+  esp8266: !include "../../common/esp8266.yaml"
 
 # P13L, P4L: Blue
 # P13L, P4H: Green

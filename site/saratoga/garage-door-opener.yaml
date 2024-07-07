@@ -4,12 +4,8 @@ substitutions:
   ip_address: 10.10.10.34
 
 packages:
-  default: !include "../../common/default.yaml"
+  esp8266: !include "../../common/esp8266.yaml"
   static_ip: !include "../../common/static_ip.yaml"
-
-esp8266:
-  board: esp01_1m
-  restore_from_flash: True
 
 script:
   - id: !remove main_button_press

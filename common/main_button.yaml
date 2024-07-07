@@ -22,14 +22,3 @@ on_multi_click:
       - OFF for at least 1s
     then:
       - button.press: "${safe_mode_id}"
-  - timing:
-      - ON for 4s to 10s
-      - OFF for at most 10s
-      - ON for at most 1s
-      - OFF for at most 1s
-      - ON for at most 1s
-      - OFF for at most 1s
-      - ON for at most 1s
-      - OFF for at least 1s
-    then:
-      - button.press: "${factory_reset_id}"

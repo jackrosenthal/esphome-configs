@@ -2,12 +2,10 @@ substitutions:
   model: fl-s122b
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 bk72xx:
   board: cbu
-  framework:
-    version: dev
 
 binary_sensor:
   - <<: !include "../../common/main_button.yaml"

@@ -9,9 +9,6 @@ packages:
   static_ip: !include "../../common/static_ip.yaml"
   sw1_is_a_light: !include "../../common/sw1_is_a_light.yaml"
 
-http_request:
-  esp8266_disable_ssl_support: true
-
 switch:
   - id: !remove sw0
 

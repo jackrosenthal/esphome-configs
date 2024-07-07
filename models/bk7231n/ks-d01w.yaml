@@ -2,7 +2,7 @@ substitutions:
   model: ks-d01w
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 esphome:
   on_loop:
@@ -35,8 +35,6 @@ esphome:
 
 bk72xx:
   board: cbu
-  framework:
-    version: dev
 
 script:
   - id: !remove main_button_press

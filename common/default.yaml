@@ -14,12 +14,16 @@ esphome:
 packages:
   site_config: !include "../site_config.yaml"
 
+ota:
+  - platform: esphome
+    id: esphome_ota
+
+update:
+
 network: {}
 logger: {}
 api: {}
 mdns: {}
-ota:
-  platform: esphome
 captive_portal: {}
 wifi:
   power_save_mode: NONE
@@ -41,8 +45,4 @@ button:
   - platform: safe_mode
     name: "Safe Mode"
     id: "${safe_mode_id}"
-    disabled_by_default: True
-  - platform: factory_reset
-    name: "Factory Reset"
-    id: "${factory_reset_id}"
     disabled_by_default: True

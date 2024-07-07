@@ -6,12 +6,10 @@ substitutions:
   model: th08
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 bk72xx:
   board: cbu
-  framework:
-    version: dev
 
 script:
   - id: !remove main_button_press

@@ -24,12 +24,31 @@ jobs:
         config: ${{ fromJSON(needs.get-relevant-configs.outputs.configs) }}
     steps:
       - uses: actions/checkout@v4
+      - if: |
+          ${{ github.event_name == 'push'
+              && github.ref == 'refs/heads/main'
+              && startsWith(matrix.config, 'site/') }}
+        uses: actions/checkout@v4
+        with:
+          repository: jackrosenthal/esphome-secrets
+          token: ${{ secrets.ESPHOME_SECRETS_TOKEN }}
+          path: esphome-secrets
+      - run: |
+          cfg=esphome-secrets/$(dirname "${{ matrix.config }}")/site_config.yaml
+          if [[ -e "${cfg}" ]]; then
+            ln -s "${cfg}" site_config.yaml
+          else
+            touch site_config.yaml
+          fi
       - uses: actions/setup-python@v4
         with:
           python-version: 3.11
-      - run: touch site_config.yaml
       - run: pip install -r requirements.txt
       - run: ESPHOME_DATA_DIR="${PWD}/.esphome" esphome compile ${{ matrix.config }}
+      - env:
+          FSSPEC_S3_KEY: 004020eafdd6fd6000000000d
+          FSSPEC_S3_SECRET: ${{ secrets.FSSPEC_S3_SECRET }}
+        run: scripts/publish_firmware.py ${{ matrix.config }}
   validate-no-duplicate-ips:
     name: "Validate there are no duplicate IP addresses within each site"
     runs-on: ubuntu-22.04

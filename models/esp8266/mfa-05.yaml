@@ -4,10 +4,7 @@ substitutions:
   manual_off_timeout: "15 min"
 
 packages:
-  default: !include "../../common/default.yaml"
-
-esp8266:
-  board: esp01_1m
+  esp8266: !include "../../common/esp8266.yaml"
 
 script:
   - id: activate

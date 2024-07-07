@@ -2,12 +2,10 @@ substitutions:
   model: ks-602s
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 bk72xx:
   board: generic-bk7231n-qfn32-tuya
-  framework:
-    version: dev
 
 binary_sensor:
   - <<: !include "../../common/main_button.yaml"

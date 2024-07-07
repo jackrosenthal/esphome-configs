@@ -1,6 +1,9 @@
 esphome:
   name_add_mac_suffix: False
 
+mdns:
+  disabled: true
+
 wifi:
   manual_ip:
     static_ip: "${ip_address}"

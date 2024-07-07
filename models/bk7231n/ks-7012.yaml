@@ -2,15 +2,13 @@ substitutions:
   model: ks-7012
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 script:
   - id: !remove main_button_press
 
 bk72xx:
   board: generic-bk7231n-qfn32-tuya
-  framework:
-    version: dev
 
 logger:
   # Disable serial port (conflict with Tuya MCU).

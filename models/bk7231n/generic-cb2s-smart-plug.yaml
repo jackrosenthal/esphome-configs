@@ -21,12 +21,10 @@ substitutions:
   model: generic-cb2s-smart-plug
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 bk72xx:
   board: cb2s
-  framework:
-    version: dev
 
 binary_sensor:
   - <<: !include "../../common/main_button.yaml"

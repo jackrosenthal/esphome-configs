@@ -3,12 +3,10 @@ substitutions:
   switch_id: sw1
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 bk72xx:
   board: cbu
-  framework:
-    version: dev
 
 output:
 - platform: gpio

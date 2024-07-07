@@ -2,12 +2,10 @@ substitutions:
   model: feit-dimwifi-cb2s
 
 packages:
-  default: !include "../../common/default.yaml"
+  bk72xx: !include "../../common/bk72xx.yaml"
 
 bk72xx:
   board: cb2s
-  framework:
-    version: dev
 
 script:
   - id: !remove main_button_press

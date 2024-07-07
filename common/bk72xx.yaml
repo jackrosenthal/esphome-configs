@@ -1,0 +1,8 @@
+packages:
+  default: !include "default.yaml"
+
+bk72xx:
+  framework:
+    version: dev
+
+update: !remove
