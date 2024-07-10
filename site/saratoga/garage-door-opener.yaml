@@ -7,11 +7,14 @@ packages:
   esp8266: !include "../../common/esp8266.yaml"
   static_ip: !include "../../common/static_ip.yaml"
 
+esp8266:
+  board: d1
+
 script:
   - id: !remove main_button_press
 
 interval:
-  - interval: 100ms
+  - interval: 500ms
     then:
       - lambda: |-
           static int last_ticks;
@@ -87,9 +90,8 @@ cover:
               return true;
           then:
             - cover.stop: garage_door
-            - delay: 1000ms
             - button.press: garage_door_button
-            - delay: 1000ms
+            - delay: 2000ms
     close_action:
       - while:
           condition:
@@ -101,9 +103,8 @@ cover:
               return true;
           then:
             - cover.stop: garage_door
-            - delay: 1000ms
             - button.press: garage_door_button
-            - delay: 1000ms
+            - delay: 2000ms
     stop_action:
       - while:
           condition:
@@ -111,4 +112,4 @@ cover:
               return id(garage_door).current_operation != COVER_OPERATION_IDLE;
           then:
             - button.press: garage_door_button
-            - delay: 1000ms
+            - delay: 2000ms
