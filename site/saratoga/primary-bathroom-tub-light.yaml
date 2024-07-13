@@ -1,0 +1,9 @@
+substitutions:
+  name: primary-bathroom-tub-light
+  friendly_name: "Primary Bathroom Tub Light"
+  ip_address: 10.10.10.39
+
+packages:
+  ks-602s: !include "../../models/bk7231n/ks-602s.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"

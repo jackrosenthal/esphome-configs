@@ -1,0 +1,9 @@
+substitutions:
+  name: primary-bathroom-exhaust-fan
+  friendly_name: "Primary Bathroom Exhaust Fan"
+  ip_address: 10.10.10.40
+
+packages:
+  ks-602s: !include "../../models/bk7231n/ks-602s.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_fan: !include "../../common/sw0_is_a_fan.yaml"
