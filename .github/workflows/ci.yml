@@ -24,10 +24,10 @@ jobs:
         config: ${{ fromJSON(needs.get-relevant-configs.outputs.configs) }}
     steps:
       - uses: actions/checkout@v4
-      - if: |
-          ${{ github.event_name == 'push'
-              && github.ref == 'refs/heads/main'
-              && startsWith(matrix.config, 'site/') }}
+      - if: >
+          github.event_name == 'push'
+          && github.ref == 'refs/heads/main'
+          && startsWith(matrix.config, 'site/')
         uses: actions/checkout@v4
         with:
           repository: jackrosenthal/esphome-secrets
