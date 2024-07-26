@@ -1,0 +1,16 @@
+substitutions:
+  name: coffee-cabinet-ks-604s
+  friendly_name: "Coffee Cabinet KS-604S"
+  ip_address: 10.10.10.41
+
+packages:
+  ks-604s: !include "../../models/bk7231n/ks-604s.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+
+switch:
+  - id: !extend lower_outlet
+    name: "Coffee Maker"
+    icon: "mdi:coffee"
+    on_turn_on:
+      - delay: 3 minutes
+      - switch.turn_off: lower_outlet
