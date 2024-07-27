@@ -9,3 +9,9 @@ packages:
   static_ip: !include "../../common/static_ip.yaml"
   sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"
   sw1_is_a_light: !include "../../common/sw1_is_a_light.yaml"
+
+light:
+  - id: !extend sw0_light
+    name: Garage Light
+  - id: !extend sw1_light
+    name: Garage Outdoor Lights
