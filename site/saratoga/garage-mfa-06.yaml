@@ -7,38 +7,5 @@ substitutions:
 packages:
   mfa-06: !include "../../models/esp8266/mfa-06.yaml"
   static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"
   sw1_is_a_light: !include "../../common/sw1_is_a_light.yaml"
-
-switch:
-  - id: !remove sw0
-
-script:
-  - id: remote_sw0
-    parameters:
-      action: string
-    then:
-      - http_request.post:
-          headers:
-            Authorization: "${http_auth_header}"
-          url: !lambda |-
-            return "http://10.10.10.28/switch/sw0/" + action;
-  - id: !remove motion_detect
-  - id: motion_detect
-    mode: restart
-    then:
-      - script.execute:
-          id: remote_sw0
-          action: turn_on
-      - delay: "${timeout}"
-      - script.execute:
-          id: remote_sw0
-          action: turn_off
-  - id: !remove manual_off
-  - id: !remove activate
-  - id: !remove main_button_press
-  - id: main_button_press
-    mode: single
-    then:
-      - script.execute:
-          id: remote_sw0
-          action: toggle
