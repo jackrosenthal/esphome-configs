@@ -9,8 +9,10 @@ aiobotocore==2.13.1
 aioesphomeapi==24.3.0
     # via esphome
 aiohappyeyeballs==2.3.2
-    # via aioesphomeapi
-aiohttp==3.9.5
+    # via
+    #   aioesphomeapi
+    #   aiohttp
+aiohttp==3.10.2
     # via
     #   aiobotocore
     #   s3fs
