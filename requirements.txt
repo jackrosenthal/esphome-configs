@@ -4,15 +4,15 @@
 #
 #    pip-compile requirements.in
 #
-aiobotocore==2.13.1
+aiobotocore==2.13.2
     # via s3fs
 aioesphomeapi==24.3.0
     # via esphome
-aiohappyeyeballs==2.3.2
+aiohappyeyeballs==2.3.5
     # via
     #   aioesphomeapi
     #   aiohttp
-aiohttp==3.10.2
+aiohttp==3.10.3
     # via
     #   aiobotocore
     #   s3fs
@@ -24,11 +24,11 @@ ajsonrpc==1.2.0
     # via platformio
 anyio==4.4.0
     # via starlette
-argcomplete==3.4.0
+argcomplete==3.5.0
     # via esphome
-async-interrupt==1.1.1
+async-interrupt==1.1.2
     # via aioesphomeapi
-attrs==23.2.0
+attrs==24.2.0
     # via aiohttp
 bitarray==2.9.2
     # via bitstring
@@ -40,9 +40,9 @@ bottle==0.12.25
     # via platformio
 certifi==2024.7.4
     # via requests
-cffi==1.16.0
+cffi==1.17.0
     # via cryptography
-chacha20poly1305-reuseable==0.12.1
+chacha20poly1305-reuseable==0.12.2
     # via aioesphomeapi
 charset-normalizer==3.3.2
     # via requests
@@ -111,7 +111,7 @@ pillow==10.2.0
     # via -r requirements.in
 platformio==6.1.15
     # via esphome
-protobuf==5.27.1
+protobuf==5.27.3
     # via aioesphomeapi
 pycparser==2.22
     # via cffi
