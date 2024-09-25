@@ -1,0 +1,9 @@
+substitutions:
+  name: upstairs-stair-lights
+  friendly_name: "Upstairs Stair Lights"
+  ip_address: 10.10.10.43
+
+packages:
+  ks-602f: !include "../../models/bk7231n/ks-602f.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"
