@@ -64,7 +64,7 @@ cryptography==43.0.0
     #   noiseprotocol
 ecdsa==0.19.0
     # via esptool
-esphome==2024.9.2
+esphome==2024.10.0
     # via -r requirements.in
 esphome-dashboard==20240620.0
     # via esphome
@@ -113,6 +113,8 @@ platformio==6.1.15
     # via esphome
 protobuf==5.27.3
     # via aioesphomeapi
+puremagic==1.27
+    # via esphome
 pycparser==2.22
     # via cffi
 pyelftools==0.31
@@ -126,8 +128,6 @@ pyserial==3.5
     #   platformio
 python-dateutil==2.9.0.post0
     # via botocore
-python-magic==0.4.27
-    # via esphome
 pyyaml==6.0.1
     # via
     #   esphome
