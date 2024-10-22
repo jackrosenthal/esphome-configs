@@ -1,0 +1,61 @@
+substitutions:
+  name: garage-keypad
+  friendly_name: "Garage Keypad"
+  ip_address: 10.10.10.42
+
+packages:
+  esp32: !include "../../common/esp32.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+
+esp32:
+  board: pico32
+
+script:
+  - id: !remove main_button_press
+
+status_led:
+  pin: GPIO22
+
+output:
+  - platform: gpio
+    pin: GPIO19
+    id: green_led
+  - platform: gpio
+    pin: GPIO23
+    id: red_led
+  - platform: ledc
+    pin: GPIO4
+    id: rtttl_out
+
+rtttl:
+  output: rtttl_out
+  id: buzzer
+  gain: 60%
+
+matrix_keypad:
+  - id: keypad
+    rows:
+      - pin: GPIO18
+      - pin: GPIO10
+      - pin: GPIO9
+    columns:
+      - pin: GPIO37
+      - pin: GPIO35
+      - pin: GPIO34
+      - pin: GPIO38
+    keys: "123456789*0#"
+    has_diodes: false
+    has_pulldowns: true
+
+key_collector:
+  - id: pincode_reader
+    source_id: keypad
+    min_length: 4
+    max_length: 4
+    end_keys: "#"
+    end_key_required: true
+    clear_keys: "*"
+    timeout: 15s
+    on_progress:
+      then:
+        - rtttl.play: "progress:d=1,o=5,b=100:16e6"
