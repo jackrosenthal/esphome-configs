@@ -1,0 +1,37 @@
+substitutions:
+  name: dog-feeder
+  friendly_name: "Dog Feeder"
+  ip_address: 10.10.10.44
+
+packages:
+  esp8266: !include "../../common/esp8266.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+
+esp8266:
+  board: d1_mini
+
+script:
+  - id: !remove main_button_press
+
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: rl_open
+  - platform: gpio
+    pin: GPIO5
+    id: rl_close
+
+cover:
+  - platform: time_based
+    name: Food Tray
+    open_action:
+      - output.turn_off: rl_close
+      - output.turn_on: rl_open
+    open_duration: 2s
+    close_action:
+      - output.turn_off: rl_open
+      - output.turn_on: rl_close
+    close_duration: 2s
+    stop_action:
+      - output.turn_off: rl_close
+      - output.turn_off: rl_open
