@@ -12,7 +12,7 @@ aiohappyeyeballs==2.3.5
     # via
     #   aioesphomeapi
     #   aiohttp
-aiohttp==3.10.3
+aiohttp==3.10.11
     # via
     #   aiobotocore
     #   s3fs
@@ -111,6 +111,8 @@ pillow==10.2.0
     # via -r requirements.in
 platformio==6.1.15
     # via esphome
+propcache==0.2.0
+    # via yarl
 protobuf==5.27.3
     # via aioesphomeapi
 puremagic==1.27
@@ -172,7 +174,7 @@ wrapt==1.16.0
     # via aiobotocore
 wsproto==1.2.0
     # via platformio
-yarl==1.9.4
+yarl==1.17.2
     # via aiohttp
 zeroconf==0.132.2
     # via
