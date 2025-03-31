@@ -74,7 +74,7 @@ frozenlist==1.4.1
     # via
     #   aiohttp
     #   aiosignal
-fsspec==2025.3.0
+fsspec==2025.3.1
     # via s3fs
 h11==0.14.0
     # via
@@ -142,7 +142,7 @@ ruamel-yaml==0.18.6
     # via esphome
 ruamel-yaml-clib==0.2.8
     # via ruamel-yaml
-s3fs==2025.3.0
+s3fs==2025.3.1
     # via -r requirements.in
 semantic-version==2.10.0
     # via platformio
