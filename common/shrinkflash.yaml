@@ -1,0 +1,5 @@
+update: !remove
+http_request: !remove
+ota:
+  - id: !remove http_ota
+web_server: !remove
