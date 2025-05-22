@@ -1,0 +1,7 @@
+substitutions:
+  name: attic-fan
+  friendly_name: "Attic Fan"
+  ip_address: 10.10.10.45
+
+packages:
+  sys-fs-01: !include "../../models/esp8266/sys-fs-01.yaml"
