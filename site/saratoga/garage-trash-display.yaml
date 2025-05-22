@@ -60,7 +60,7 @@ display:
       esptime.second = 0;
       esptime.day_of_week = 1;
       esptime.day_of_year = 1;
-      esptime.recalc_timestamp_local(false);
+      esptime.recalc_timestamp_local();
       auto today = id(sntp_time).now();
       today.hour = 0;
       today.minute = 0;
