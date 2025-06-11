@@ -79,7 +79,7 @@ defusedxml==0.7.1
     # via cairosvg
 ecdsa==0.19.1
     # via esptool
-esphome==2025.5.0
+esphome==2025.5.2
     # via -r requirements.in
 esphome-dashboard==20250514.0
     # via esphome
