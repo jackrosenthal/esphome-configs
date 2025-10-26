@@ -1,2 +1,4 @@
 #!/bin/sh
-uvx --with-requirements "$(dirname "$0")/../requirements.txt" esphome "$@"
+repo="$(dirname "$0")/.."
+tool="$(basename "$0")"
+uvx --with-requirements "${repo}/requirements.txt" --python 3.13 "${tool}" "$@"
