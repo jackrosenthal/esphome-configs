@@ -45,10 +45,6 @@ jobs:
           python-version: 3.11
       - run: pip install -r requirements.txt
       - run: ESPHOME_DATA_DIR="${PWD}/.esphome" esphome compile ${{ matrix.config }}
-      - env:
-          FSSPEC_S3_KEY: 004020eafdd6fd6000000000d
-          FSSPEC_S3_SECRET: ${{ secrets.FSSPEC_S3_SECRET }}
-        run: scripts/publish_firmware.py ${{ matrix.config }}
   validate-no-duplicate-ips:
     name: "Validate there are no duplicate IP addresses within each site"
     runs-on: ubuntu-22.04

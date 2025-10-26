@@ -1,12 +1,5 @@
 packages:
   default: !include "default.yaml"
 
-ota:
-  - platform: http_request
-    id: http_ota
-
 esp32:
   board: esp32dev
-
-http_request:
-  verify_ssl: false

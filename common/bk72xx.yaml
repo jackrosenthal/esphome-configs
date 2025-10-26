@@ -4,5 +4,3 @@ packages:
 bk72xx:
   framework:
     version: dev
-
-update: !remove

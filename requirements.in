@@ -1,4 +1,2 @@
 esphome
 pillow
-s3fs
-botocore<1.36

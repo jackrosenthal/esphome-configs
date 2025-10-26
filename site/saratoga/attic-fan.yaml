@@ -6,4 +6,3 @@ substitutions:
 packages:
   sys-fs-01: !include "../../models/esp8266/sys-fs-01.yaml"
   static_ip: !include "../../common/static_ip.yaml"
-  shrinkflash: !include "../../common/shrinkflash.yaml"
