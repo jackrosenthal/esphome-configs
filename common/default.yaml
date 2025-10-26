@@ -14,13 +14,15 @@ esphome:
 packages:
   site_config: !include "../site_config.yaml"
 
+api:
+  reboot_timeout: 0s
+
 ota:
   - platform: esphome
     id: esphome_ota
 
 network: {}
 logger: {}
-api: {}
 mdns: {}
 captive_portal: {}
 wifi:
