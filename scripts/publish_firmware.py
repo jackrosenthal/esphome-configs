@@ -59,7 +59,7 @@ def main(argv=None):
     opts = parser.parse_args()
 
     os.environ.setdefault("ESPHOME_DATA_DIR", str(opts.esphome_data_dir))
-    esphome.core.CORE.config_path = str(opts.yaml_path)
+    esphome.core.CORE.config_path = opts.yaml_path
     esphome.core.CORE.config = esphome.config.read_config({})
     esphome.__main__.generate_cpp_contents(esphome.core.CORE.config)
 
