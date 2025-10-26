@@ -7,5 +7,5 @@ mdns:
 wifi:
   manual_ip:
     static_ip: "${ip_address}"
-    gateway: 10.10.10.1
-    subnet: 255.255.254.0
+    gateway: "${gateway_ip}"
+    subnet: "${subnet_mask}"
