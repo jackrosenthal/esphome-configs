@@ -176,8 +176,6 @@ rich-click==1.9.2
     # via esptool
 ruamel-yaml==0.18.15
     # via esphome
-ruamel-yaml-clib==0.2.12
-    # via ruamel-yaml
 s3fs==2025.9.0
     # via -r requirements.in
 semantic-version==2.10.0
@@ -202,7 +200,7 @@ tzlocal==5.3.1
     # via
     #   aioesphomeapi
     #   esphome
-urllib3==1.26.20
+urllib3==2.5.0
     # via
     #   aiobotocore
     #   botocore
