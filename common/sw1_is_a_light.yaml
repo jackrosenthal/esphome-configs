@@ -1,6 +1,6 @@
 light:
   - platform: binary
-    name: "Light"
+    name: "Light SW1"
     id: sw1_light
     output: sw1_light_output
 
