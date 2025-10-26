@@ -1,0 +1,8 @@
+substitutions:
+  name: gre-dim3
+  friendly_name: "Kitchen Mid"
+  ip_address: 10.10.12.39
+
+packages:
+  ks-d01w: !include "../../models/bk7231n/ks-d01w.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

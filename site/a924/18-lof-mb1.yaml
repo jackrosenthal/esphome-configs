@@ -1,0 +1,8 @@
+substitutions:
+  name: lof-mb1
+  friendly_name: "Loft Stairs RHS"
+  ip_address: 10.10.12.18
+
+packages:
+  moes-ws-b-us: !include "../../models/bk7231n/moes-ws-b-us.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

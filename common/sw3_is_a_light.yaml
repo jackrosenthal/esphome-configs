@@ -1,0 +1,34 @@
+light:
+  - platform: binary
+    name: "Light"
+    id: sw3_light
+    output: sw3_light_output
+
+output:
+  - platform: template
+    type: binary
+    id: sw3_light_output
+    write_action:
+      - if:
+          condition:
+            - lambda: "return state;"
+            - switch.is_off: sw3
+          then:
+            - switch.turn_on: sw3
+      - if:
+          condition:
+            - lambda: "return !state;"
+            - switch.is_on: sw3
+          then:
+            - switch.turn_off: sw3
+
+switch:
+  - id: !extend sw3
+    internal: True
+  - platform: "copy"
+    source_id: sw3
+    id: sw3_copy
+    on_turn_on:
+      - light.turn_on: sw3_light
+    on_turn_off:
+      - light.turn_off: sw3_light

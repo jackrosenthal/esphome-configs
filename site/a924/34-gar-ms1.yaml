@@ -1,0 +1,9 @@
+substitutions:
+  name: gar-ms1
+  friendly_name: "Garage door into house RHS"
+  ip_address: 10.10.12.34
+
+packages:
+  mfa-05: !include "../../models/esp8266/mfa-05.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"

@@ -1,0 +1,13 @@
+substitutions:
+  name: gre-mb2
+  friendly_name: "Living by patio door LHS"
+  ip_address: 10.10.12.42
+
+packages:
+  moes-ws-b-us: !include "../../models/bk7231n/moes-ws-b-us.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw1_is_a_light: !include "../../common/sw1_is_a_light.yaml"
+
+light:
+  - id: !extend sw1_light
+    name: Ext Sconce

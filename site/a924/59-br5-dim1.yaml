@@ -1,0 +1,8 @@
+substitutions:
+  name: br5-dim1
+  friendly_name: "Bedroom 5 by door"
+  ip_address: 10.10.12.59
+
+packages:
+  ks-d01w: !include "../../models/bk7231n/ks-d01w.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

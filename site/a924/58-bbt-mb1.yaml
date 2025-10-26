@@ -1,0 +1,21 @@
+substitutions:
+  name: bbt-mb1
+  friendly_name: "Basement Bathroom"
+  ip_address: 10.10.12.58
+
+packages:
+  moes-ws-b-us: !include "../../models/bk7231n/moes-ws-b-us.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw1_is_a_light: !include "../../common/sw1_is_a_light.yaml"
+  sw2_is_a_light: !include "../../common/sw2_is_a_light.yaml"
+  sw3_is_a_fan: !include "../../common/sw3_is_a_fan.yaml"
+
+light:
+  - id: !extend sw1_light
+    name: Sconce
+  - id: !extend sw2_light
+    name: Cans
+
+fan:
+  - id: !extend sw3_fan
+    name: Fart Fan

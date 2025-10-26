@@ -1,0 +1,8 @@
+substitutions:
+  name: bas-dim2
+  friendly_name: "Basement Hall Mid"
+  ip_address: 10.10.12.55
+
+packages:
+  ks-d01w: !include "../../models/bk7231n/ks-d01w.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

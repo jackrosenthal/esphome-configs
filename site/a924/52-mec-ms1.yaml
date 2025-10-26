@@ -1,0 +1,10 @@
+substitutions:
+  name: mec-ms1
+  friendly_name: "Mech Room RHS"
+  ip_address: 10.10.12.52
+
+packages:
+  mfa-06: !include "../../models/esp8266/mfa-06.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"
+  sw1_is_a_fan: !include "../../common/sw1_is_a_fan.yaml"

@@ -1,0 +1,8 @@
+substitutions:
+  name: br1-mb3
+  friendly_name: "Bedroom 1 Vanity RHS"
+  ip_address: 10.10.12.24
+
+packages:
+  moes-ws-b-us: !include "../../models/bk7231n/moes-ws-b-us.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

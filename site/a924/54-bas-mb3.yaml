@@ -1,0 +1,8 @@
+substitutions:
+  name: bas-mb3
+  friendly_name: "Basement Hall LHS"
+  ip_address: 10.10.12.54
+
+packages:
+  moes-ws-b-us: !include "../../models/bk7231n/moes-ws-b-us.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

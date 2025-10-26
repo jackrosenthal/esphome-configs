@@ -1,0 +1,53 @@
+Switch Number,Location,Model,L1,L2,L3,L4,IP Address,Hostname
+10,Bedroom 2,KS-D01W,Can Lights,,,,10.10.12.10,br2-dim1
+11,Bedroom 3,KS-D01W,Can Lights,,,,10.10.12.11,br3-dim1
+12,Loft Hall LHS,KS-D01W,Can Lights,,,,10.10.12.12,lof-dim1
+13,Loft Hall RHS,KS-D01W,Sconces,,,,10.10.12.13,lof-dim2
+14,Loft Bathroom Vanity,MFA-06,Can Light,Pendant,,,10.10.12.14,lbt-ms1
+15,Loft Bathroom Toilet,MFA-06,Shower Can Light,Fart Fan,,,10.10.12.15,lbt-ms2
+16,Loft Laundry,MFA-06,Can Lights,Exhaust Fan,,,10.10.12.16,lau-ms1
+17,Loft Stairs LHS,KS-D01W,Upstairs Tread Lights,,,,10.10.12.17,lof-dim3
+18,Loft Stairs RHS,WS-B-US 4 Button,NC,NC,NC,NC,10.10.12.18,lof-mb1
+19,Bedroom 1 Left Nightstand,WS-B-US 4 Button,Sconce Above,NC,NC,NC,10.10.12.19,br1-mb1
+20,Bedroom 1 Right Nightstand,WS-B-US 4 Button,Sconce Above,NC,NC,NC,10.10.12.20,br1-mb2
+21,Bedroom 1 Door RHS,KS-D01W,Cans,,,,10.10.12.21,br1-dim1
+22,Bedroom 1 Shower LHS,KS-D01W,Cans,,,,10.10.12.22,br1-dim2
+23,Bedroom 1 Shower RHS,MFA-06,Shower Light,Shower Fan,,,10.10.12.23,br1-ms1
+24,Bedroom 1 Vanity RHS,WS-B-US 3 Button,NC,NC,NC,,10.10.12.24,br1-mb3
+25,Bedroom 1 Vanity LHS,WS-B-US 3 Button,Sconces,NC,NC,,10.10.12.25,br1-mb4
+26,Bedroom 1 Toilet,MFA-06,Light,Fart Fan,,,10.10.12.26,br1-ms2
+27,Front Door LHS,KS-D01W,Entry Chanelier,,,,10.10.12.27,ent-dim1
+28,Front Door RHS,WS-B-US 4 Button,Front Door Ext Cans,Front Door Ext Sconce,NC,NC,10.10.12.28,ent-mb1
+29,Entry Downstairs LHS,WS-B-US 4 Button,NC,NC,NC,NC,10.10.12.29,ent-mb2
+30,Entry Downstairs RHS,KS-D01W,Downstairs Stair Treads,,,,10.10.12.30,ent-dim2
+31,Door to garage inside,KS-D01W,Cans,,,,10.10.12.31,ent-dim3
+32,Powder Room,MFA-06,Pendant & Can,Fart Fan,,,10.10.12.32,pdr-ms1
+33,Garage door into house LHS,WS-B-US 4 Button,Garage Ext Sconces,NC,NC,NC,10.10.12.33,gar-mb1
+34,Garage door into house RHS,MFA-05,Garage Lights,,,,10.10.12.34,gar-ms1
+35,Garage man door,MFA-06,Man door ext sconce,NC,,,10.10.12.35,gar-ms2
+36,Dining LHS,KS-D01W,Dining Table Chand,,,,10.10.12.36,gre-dim1
+37,Dining RHS,WS-B-US 4 Button,NC,NC,NC,NC,10.10.12.37,gre-mb1
+38,Kitchen LHS,KS-D01W,Island Pendants,,,,10.10.12.38,gre-dim2
+39,Kitchen Mid,KS-D01W,Kitchen Cans,,,,10.10.12.39,gre-dim3
+40,Kitchen RHS,KS-D01W,Sconce Above Window,,,,10.10.12.40,gre-dim4
+41,Kitchen Far,KS-D01W,Floating Shelves,,,,10.10.12.41,gre-dim5
+42,Living by patio door LHS,WS-B-US 4 Button,Ext Sconce,NC,NC,NC,10.10.12.42,gre-mb2
+43,Living by patio door Mid,KS-D01W,Living Chand,,,,10.10.12.43,gre-dim6
+44,Living by patio door RHS,KS-D01W,Living Cans,,,,10.10.12.44,gre-dim7
+45,Living by sliders LHS,WS-B-US 4 Button,Deck Lights,NC,NC,NC,10.10.12.45,gre-mb3
+46,Living by sliders RHS,KS-D01W,Dining Cans,,,,10.10.12.46,gre-dim8
+47,Pantry LHS,KS-D01W,LED Strip,,,,10.10.12.47,pan-dim1
+48,Pantry RHS,KS-D01W,Cans,,,,10.10.12.48,pan-dim2
+49,Basement by stairs LHS,WS-B-US 4 Button,NC,NC,NC,NC,10.10.12.49,bas-mb1
+50,Basement by stairs RHS,KS-D01W,Cans,,,,10.10.12.50,bas-dim1
+51,Basement by mech door,WS-B-US 4 Button,NC,NC,NC,NC,10.10.12.51,bas-mb2
+52,Mech Room RHS,MFA-06,Mech Lights,Exhaust Fan,,,10.10.12.52,mec-ms1
+53,Net Closet,MFA-05,Light,,,,10.10.12.53,net-ms1
+54,Basement Hall LHS,WS-B-US 4 Button,NC,NC,NC,NC,10.10.12.54,bas-mb3
+55,Basement Hall Mid,KS-D01W,Sconces,,,,10.10.12.55,bas-dim2
+56,Basement Hall RHS,KS-D01W,Cans,,,,10.10.12.56,bas-dim3
+57,Bedroom 4,WS-B-US 1 Button,Cans,,,,10.10.12.57,br4-mb1
+58,Basement Bathroom,WS-B-US 3 Button,Sconce,Cans,Fart Fan,,10.10.12.58,bbt-mb1
+59,Bedroom 5 by door,KS-D01W,Cans,,,,10.10.12.59,br5-dim1
+60,Bedroom 5 by slider,WS-B-US 4 Button,Ext sconces,NC,NC,NC,10.10.12.60,br5-mb1
+61,Bedroom 5 closet,MFA-05,Closet light,,,,10.10.12.61,br5-ms1

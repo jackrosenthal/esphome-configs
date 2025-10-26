@@ -1,0 +1,8 @@
+substitutions:
+  name: br1-dim2
+  friendly_name: "Bedroom 1 Shower LHS"
+  ip_address: 10.10.12.22
+
+packages:
+  ks-d01w: !include "../../models/bk7231n/ks-d01w.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

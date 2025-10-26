@@ -1,0 +1,8 @@
+substitutions:
+  name: ent-dim2
+  friendly_name: "Entry Downstairs RHS"
+  ip_address: 10.10.12.30
+
+packages:
+  ks-d01w: !include "../../models/bk7231n/ks-d01w.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

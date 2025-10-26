@@ -1,0 +1,8 @@
+substitutions:
+  name: bas-mb1
+  friendly_name: "Basement by stairs LHS"
+  ip_address: 10.10.12.49
+
+packages:
+  moes-ws-b-us: !include "../../models/bk7231n/moes-ws-b-us.yaml"
+  static_ip: !include "../../common/static_ip.yaml"

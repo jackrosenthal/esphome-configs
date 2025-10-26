@@ -1,0 +1,9 @@
+substitutions:
+  name: gar-ms2
+  friendly_name: "Garage man door"
+  ip_address: 10.10.12.35
+
+packages:
+  mfa-06: !include "../../models/esp8266/mfa-06.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
+  sw0_is_a_light: !include "../../common/sw0_is_a_light.yaml"

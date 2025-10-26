@@ -1,0 +1,8 @@
+substitutions:
+  name: pan-dim1
+  friendly_name: "Pantry LHS"
+  ip_address: 10.10.12.47
+
+packages:
+  ks-d01w: !include "../../models/bk7231n/ks-d01w.yaml"
+  static_ip: !include "../../common/static_ip.yaml"
