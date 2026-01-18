@@ -109,9 +109,8 @@ output:
   - platform: libretiny_pwm
     pin: P8
     id: pwm_output
-    min_power: 0.100
+    min_power: 0.010
     max_power: 0.999
-    zero_means_zero: true
   - platform: gpio
     pin: P14
     id: led1
