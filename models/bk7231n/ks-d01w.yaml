@@ -5,6 +5,13 @@ packages:
   bk72xx: !include "../../common/bk72xx.yaml"
 
 esphome:
+  on_boot:
+    then:
+      - light.turn_on:
+          id: dimmer
+          brightness: 30%
+      - delay: 2s
+      - light.turn_off: dimmer
   on_loop:
     then:
       lambda: !lambda |-
