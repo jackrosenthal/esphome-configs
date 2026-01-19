@@ -46,8 +46,8 @@ Switch Number,Location,Model,L1,L2,L3,L4,IP Address,Hostname
 54,Basement Hall LHS,WS-B-US 4 Button,NC,NC,NC,NC,10.10.12.54,bas-mb3
 55,Basement Hall Mid,KS-D01W,Sconces,,,,10.10.12.55,bas-dim2
 56,Basement Hall RHS,KS-D01W,Cans,,,,10.10.12.56,bas-dim3
-57,Bedroom 4,WS-B-US 1 Button,Cans,,,,10.10.12.57,br4-mb1
 58,Basement Bathroom,WS-B-US 3 Button,Sconce,Cans,Fart Fan,,10.10.12.58,bbt-mb1
 59,Bedroom 5 by door,KS-D01W,Cans,,,,10.10.12.59,br5-dim1
 60,Bedroom 5 by slider,WS-B-US 4 Button,Ext sconces,NC,NC,NC,10.10.12.60,br5-mb1
 61,Bedroom 5 closet,MFA-05,Closet light,,,,10.10.12.61,br5-ms1
+62,Bedroom 4,MFA-05,Cans,,,,10.10.12.62,br4-ms1
