@@ -48,5 +48,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
-      - run: touch site_config.yaml
+      - run: |
+          cat >site_config.yaml <<EOF
+          substitutions:
+            gateway_ip: 1.1.1.1
+            subnet_mask: 0.0.0.0
+          EOF
       - run: uv run scripts/validate_no_duplicate_ips.py
