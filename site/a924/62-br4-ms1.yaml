@@ -2,6 +2,7 @@ substitutions:
   name: br4-ms1
   friendly_name: "Bedroom 4"
   ip_address: 10.10.12.62
+  timeout: 60 min
 
 packages:
   mfa-05: !include "../../models/esp8266/mfa-05.yaml"
