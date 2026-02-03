@@ -2,6 +2,7 @@ substitutions:
   name: lau-ms1
   friendly_name: "Loft Laundry"
   ip_address: 10.10.12.16
+  timeout: 3 min
 
 packages:
   mfa-06: !include "../../models/esp8266/mfa-06.yaml"
