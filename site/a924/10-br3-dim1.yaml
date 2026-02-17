@@ -1,7 +1,7 @@
 substitutions:
   name: br3-dim1
   friendly_name: "Bedroom 3"
-  ip_address: 10.10.12.11
+  ip_address: 10.10.12.10
 
 packages:
   ks-d01w: !include "../../models/bk7231n/ks-d01w.yaml"

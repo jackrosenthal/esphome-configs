@@ -1,6 +1,6 @@
 Switch Number,Location,Model,L1,L2,L3,L4,IP Address,Hostname
-10,Bedroom 2,KS-D01W,Can Lights,,,,10.10.12.10,br2-dim1
-11,Bedroom 3,KS-D01W,Can Lights,,,,10.10.12.11,br3-dim1
+10,Bedroom 3,KS-D01W,Can Lights,,,,10.10.12.10,br3-dim1
+11,Bedroom 2,KS-D01W,Can Lights,,,,10.10.12.11,br2-dim1
 12,Loft Hall LHS,KS-D01W,Can Lights,,,,10.10.12.12,lof-dim1
 13,Loft Hall RHS,KS-D01W,Sconces,,,,10.10.12.13,lof-dim2
 14,Loft Bathroom Vanity,MFA-06,Can Light,Pendant,,,10.10.12.14,lbt-ms1
