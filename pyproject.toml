@@ -6,6 +6,6 @@ dependencies = []
 
 [dependency-groups]
 dev = [
-    "esphome>=2025.12.7",
+    "esphome>=2026.6.3",
     "pillow>=11.3.0",
 ]
